@@ -1,0 +1,258 @@
+# French translations for Association for Mercy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "English"
+msgstr "Anglais"
+
+msgid "Français"
+msgstr "Français"
+
+msgid "Association for Mercy"
+msgstr "Association pour la Miséricorde"
+
+msgid "Association for Mercy Logo"
+msgstr "Logo de l'Association pour la Miséricorde"
+
+msgid "Association for Mercy — Compassion in Action"
+msgstr "Association pour la Miséricorde — La Compassion en Action"
+
+msgid "Compassion · Assistance · Integrity"
+msgstr "Compassion · Assistance · Intégrité"
+
+msgid "Staff Login"
+msgstr "Connexion Staff"
+
+msgid "Serving Communities Since 2010"
+msgstr "Au Service des Communautés Depuis 2010"
+
+msgid "Bringing"
+msgstr "Apportons"
+
+msgid "Hope"
+msgstr "l'Espoir"
+
+msgid "Changing"
+msgstr "Changeons"
+
+msgid "Lives"
+msgstr "des Vies"
+
+msgid "The Association for Mercy empowers vulnerable communities through compassionate action, sustainable programs, and transparent giving."
+msgstr "L'Association pour la Miséricorde autonomise les communautés vulnérables par l'action compatissante, des programmes durables et des dons transparents."
+
+msgid "Make a Donation"
+msgstr "Faire un Don"
+
+msgid "Become a Member"
+msgstr "Devenir Membre"
+
+msgid "Beneficiaries Helped"
+msgstr "Bénéficiaires Aidés"
+
+msgid "Active Programs"
+msgstr "Programmes Actifs"
+
+msgid "Donations Received"
+msgstr "Dons Reçus"
+
+msgid "Active Cases"
+msgstr "Cas Actifs"
+
+msgid "What We Do"
+msgstr "Ce Que Nous Faisons"
+
+msgid "We create lasting impact through focused, transparent programs."
+msgstr "Nous créons un impact durable grâce à des programmes ciblés et transparents."
+
+msgid "Beneficiary Support"
+msgstr "Soutien aux Bénéficiaires"
+
+msgid "Direct case management and assistance for individuals and families facing hardship."
+msgstr "Gestion directe des cas et assistance aux individus et familles en difficulté."
+
+msgid "Community Programs"
+msgstr "Programmes Communautaires"
+
+msgid "Structured initiatives addressing education, health, housing, and livelihoods."
+msgstr "Initiatives structurées abordant l'éducation, la santé, le logement et les moyens de subsistance."
+
+msgid "Transparent Giving"
+msgstr "Dons Transparents"
+
+msgid "Every contribution is tracked and accounted for with full transparency."
+msgstr "Chaque contribution est suivie et comptabilisée en toute transparence."
+
+msgid "Our Activities"
+msgstr "Nos Activités"
+
+msgid "See the impact we're making in communities every day."
+msgstr "Voyez l'impact que nous avons chaque jour dans les communautés."
+
+msgid "Ready to Make an Impact?"
+msgstr "Prêt à Faire la Différence ?"
+
+msgid "Join hundreds of donors and volunteers transforming lives every day."
+msgstr "Rejoignez des centaines de donateurs et bénévoles qui transforment des vies chaque jour."
+
+msgid "Donate Now"
+msgstr "Faire un Don"
+
+msgid "Apply for Membership"
+msgstr "Postuler comme Membre"
+
+msgid "Compassion in action. Empowering communities through sustainable programs and transparent giving since 2010."
+msgstr "La compassion en action. Autonomiser les communautés par des programmes durables et des dons transparents depuis 2010."
+
+msgid "Quick Links"
+msgstr "Liens Rapides"
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "Donate"
+msgstr "Faire un Don"
+
+msgid "Join Us"
+msgstr "Nous Rejoindre"
+
+msgid "Our Programs"
+msgstr "Nos Programmes"
+
+msgid "Community Health"
+msgstr "Santé Communautaire"
+
+msgid "Education Support"
+msgstr "Soutien Éducatif"
+
+msgid "Emergency Relief"
+msgstr "Aide d'Urgence"
+
+msgid "Youth Empowerment"
+msgstr "Autonomisation des Jeunes"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Yaoundé, Cameroon"
+msgstr "Yaoundé, Cameroun"
+
+msgid "Association for Mercy. All rights reserved."
+msgstr "Association pour la Miséricorde. Tous droits réservés."
+
+msgid "Privacy Policy"
+msgstr "Politique de Confidentialité"
+
+msgid "Terms of Service"
+msgstr "Conditions d'Utilisation"
+
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+msgid "Privacy"
+msgstr "Confidentialité"
+
+msgid "Sign Out"
+msgstr "Déconnexion"
+
+msgid "Main"
+msgstr "Principal"
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "Management"
+msgstr "Gestion"
+
+msgid "Beneficiaries"
+msgstr "Bénéficiaires"
+
+msgid "Programs"
+msgstr "Programmes"
+
+msgid "Donations"
+msgstr "Dons"
+
+msgid "Admin Review"
+msgstr "Révision Admin"
+
+msgid "Donation Intents"
+msgstr "Intentions de Don"
+
+msgid "Membership Apps"
+msgstr "Demandes d'Adhésion"
+
+msgid "System"
+msgstr "Système"
+
+msgid "User Management"
+msgstr "Gestion des Utilisateurs"
+
+msgid "Manage system users, roles, and account status."
+msgstr "Gérer les utilisateurs, les rôles et le statut des comptes."
+
+msgid "Search by name or email..."
+msgstr "Rechercher par nom ou email..."
+
+msgid "All Roles"
+msgstr "Tous les Rôles"
+
+msgid "Super Admin"
+msgstr "Super Admin"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Staff"
+msgstr "Staff"
+
+msgid "All Status"
+msgstr "Tous les Statuts"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Disabled"
+msgstr "Désactivé"
+
+msgid "Filter"
+msgstr "Filtrer"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Role"
+msgstr "Rôle"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Joined"
+msgstr "Inscrit"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "You"
+msgstr "Vous"
+
+msgid "Deactivate"
+msgstr "Désactiver"
+
+msgid "Activate"
+msgstr "Activer"
+
+msgid "Change Role"
+msgstr "Changer le Rôle"
+
+msgid "No users found."
+msgstr "Aucun utilisateur trouvé."

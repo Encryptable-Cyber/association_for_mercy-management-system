@@ -1,0 +1,140 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Beneficiary Report" %} - Association for Mercy{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold"><i class="bi bi-file-earmark-bar-graph me-2"></i>{% trans "Beneficiary Report" %}</h4>
+        <p class="text-muted mb-0">{% trans "View and export beneficiary data." %}</p>
+    </div>
+    <a href="{% url 'beneficiaries:list' %}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>{% trans "Back to Beneficiaries" %}
+    </a>
+</div>
+
+<!-- Filters -->
+<div class="card table-card mb-3">
+    <div class="card-body">
+        <form method="get" class="row g-2">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" name="q" class="form-control" placeholder="{% trans 'Search by name or phone...' %}" value="{{ query }}">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <select name="status" class="form-select">
+                    <option value="">{% trans "All Statuses" %}</option>
+                    <option value="active" {% if status_filter == 'active' %}selected{% endif %}>{% trans "Active" %}</option>
+                    <option value="inactive" {% if status_filter == 'inactive' %}selected{% endif %}>{% trans "Inactive" %}</option>
+                    <option value="urgent" {% if status_filter == 'urgent' %}selected{% endif %}>{% trans "Urgent" %}</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select name="year" class="form-select">
+                    <option value="">{% trans "All Years" %}</option>
+                    {% for y in available_years %}
+                    <option value="{{ y }}" {% if year_filter == y|stringformat:"s" %}selected{% endif %}>{{ y }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select name="month" class="form-select">
+                    <option value="">{% trans "All Months" %}</option>
+                    <option value="1" {% if month_filter == '1' %}selected{% endif %}>{% trans "January" %}</option>
+                    <option value="2" {% if month_filter == '2' %}selected{% endif %}>{% trans "February" %}</option>
+                    <option value="3" {% if month_filter == '3' %}selected{% endif %}>{% trans "March" %}</option>
+                    <option value="4" {% if month_filter == '4' %}selected{% endif %}>{% trans "April" %}</option>
+                    <option value="5" {% if month_filter == '5' %}selected{% endif %}>{% trans "May" %}</option>
+                    <option value="6" {% if month_filter == '6' %}selected{% endif %}>{% trans "June" %}</option>
+                    <option value="7" {% if month_filter == '7' %}selected{% endif %}>{% trans "July" %}</option>
+                    <option value="8" {% if month_filter == '8' %}selected{% endif %}>{% trans "August" %}</option>
+                    <option value="9" {% if month_filter == '9' %}selected{% endif %}>{% trans "September" %}</option>
+                    <option value="10" {% if month_filter == '10' %}selected{% endif %}>{% trans "October" %}</option>
+                    <option value="11" {% if month_filter == '11' %}selected{% endif %}>{% trans "November" %}</option>
+                    <option value="12" {% if month_filter == '12' %}selected{% endif %}>{% trans "December" %}</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-funnel"></i> {% trans "Filter" %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Results count -->
+<div class="text-muted small mb-2">
+    <i class="bi bi-info-circle me-1"></i>
+    {% blocktrans with count=beneficiaries.count %}{{ count }} beneficiaries found{% endblocktrans %}
+</div>
+
+<!-- Export Buttons -->
+<div class="d-flex gap-2 mb-3">
+    <form method="post" class="d-inline">
+        {% csrf_token %}
+        <input type="hidden" name="export_type" value="pdf">
+        <input type="hidden" name="q" value="{{ query }}">
+        <input type="hidden" name="status" value="{{ status_filter }}">
+        <input type="hidden" name="year" value="{{ year_filter }}">
+        <input type="hidden" name="month" value="{{ month_filter }}">
+        <button type="submit" class="btn btn-danger">
+            <i class="bi bi-file-pdf me-1"></i>{% trans "Export PDF" %}
+        </button>
+    </form>
+    <form method="post" class="d-inline">
+        {% csrf_token %}
+        <input type="hidden" name="export_type" value="excel">
+        <input type="hidden" name="q" value="{{ query }}">
+        <input type="hidden" name="status" value="{{ status_filter }}">
+        <input type="hidden" name="year" value="{{ year_filter }}">
+        <input type="hidden" name="month" value="{{ month_filter }}">
+        <button type="submit" class="btn btn-success">
+            <i class="bi bi-file-excel me-1"></i>{% trans "Export Excel" %}
+        </button>
+    </form>
+    <button onclick="window.print()" class="btn btn-outline-secondary print-btn">
+        <i class="bi bi-printer me-1"></i>{% trans "Print" %}
+    </button>
+</div>
+
+<!-- Report Table -->
+<div class="card table-card">
+    <div class="card-body p-0">
+        <table class="table table-striped table-hover mb-0" id="reportTable">
+            <thead class="table-light">
+                <tr>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "Gender" %}</th>
+                    <th>{% trans "Phone" %}</th>
+                    <th>{% trans "Email" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Created" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in beneficiaries %}
+                <tr>
+                    <td>{{ b.full_name }}</td>
+                    <td>{{ b.get_gender_display }}</td>
+                    <td>{{ b.phone|default:"—" }}</td>
+                    <td>{{ b.email|default:"—" }}</td>
+                    <td>
+                        <span class="badge {% if b.status == 'active' %}badge-status-active{% elif b.status == 'urgent' %}badge-status-urgent{% else %}badge-status-inactive{% endif %}">
+                            {{ b.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="text-muted small">{{ b.created_at|date:"M d, Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-4">{% trans "No beneficiaries found." %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

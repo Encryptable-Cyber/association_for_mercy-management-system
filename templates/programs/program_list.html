@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% block title %}Programs - Association for Mercy{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold"><i class="bi bi-folder-fill me-2"></i>Programs</h4>
+        <p class="text-muted mb-0">Manage NGO programs and initiatives.</p>
+    </div>
+    <a href="{% url 'programs:create' %}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i>New Program
+    </a>
+</div>
+
+<div class="row g-3">
+    {% for program in programs %}
+    <div class="col-xl-4 col-md-6">
+        <div class="card table-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h6 class="fw-bold mb-0">
+                        <a href="{% url 'programs:detail' program.pk %}" class="text-decoration-none">
+                            {{ program.name }}
+                        </a>
+                    </h6>
+                    <span class="badge {% if program.status == 'active' %}badge-status-active{% elif program.status == 'completed' %}badge-status-inactive{% elif program.status == 'planned' %}bg-info{% else %}bg-secondary{% endif %}">
+                        {{ program.get_status_display }}
+                    </span>
+                </div>
+                <p class="text-muted small mb-3">{{ program.description|truncatechars:120 }}</p>
+                <div class="d-flex justify-content-between small text-muted">
+                    <span><i class="bi bi-calendar me-1"></i>{{ program.start_date|date:"M Y" }}</span>
+                    <span><i class="bi bi-cash me-1"></i>{{ program.budget|floatformat:0 }} XAF</span>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex gap-1">
+                    <a href="{% url 'programs:detail' program.pk %}" class="btn btn-outline-primary btn-sm flex-grow-1">
+                        <i class="bi bi-eye me-1"></i>View
+                    </a>
+                    <a href="{% url 'programs:edit' program.pk %}" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="card table-card">
+            <div class="card-body text-center text-muted py-5">
+                <i class="bi bi-folder-x fs-1 d-block mb-2"></i>
+                <p>No programs yet.</p>
+                <a href="{% url 'programs:create' %}" class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-1"></i>Create First Program
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

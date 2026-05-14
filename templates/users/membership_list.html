@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% block title %}Membership Applications - Review{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h4 class="fw-bold"><i class="bi bi-person-plus-fill me-2"></i>Membership Applications</h4>
+    <p class="text-muted">Review public membership applications.
+        {% if pending_count > 0 %}
+        <span class="badge bg-warning text-dark ms-1">{{ pending_count }} pending</span>
+        {% endif %}
+    </p>
+</div>
+
+<div class="card table-card">
+    <div class="card-body p-0">
+        <table class="table table-striped table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Nationality</th>
+                    <th>Occupation</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in applications %}
+                <tr>
+                    <td class="fw-medium">{{ app.full_name }}</td>
+                    <td>{{ app.email }}</td>
+                    <td>{{ app.nationality|default:"—" }}</td>
+                    <td>{{ app.occupation|default:"—" }}</td>
+                    <td>
+                        <span class="badge {% if app.status == 'pending' %}badge-status-pending{% elif app.status == 'approved' %}badge-status-active{% elif app.status == 'rejected' %}badge-status-urgent{% elif app.status == 'interview' %}bg-info{% endif %}">
+                            {{ app.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="text-muted small">{{ app.submitted_at|date:"M d, Y" }}</td>
+                    <td>
+                        <a href="{% url 'users:membership_review' app.pk %}" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-eye me-1"></i>Review
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">No membership applications yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
