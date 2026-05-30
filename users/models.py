@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -19,6 +20,13 @@ class User(AbstractUser):
         choices=ROLE_CHOICES,
         default='staff',
         help_text='Designates the user\'s role in the system.'
+    )
+    
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures/',
+        blank=True,
+        null=True,
+        help_text='Professional profile photo (JPG, JPEG, PNG only, max 2MB)'
     )
 
     # Use email as the unique identifier for authentication
@@ -55,7 +63,8 @@ class MembershipApplication(models.Model):
     Enhanced with detailed applicant profiling.
     """
     STATUS_CHOICES = [
-        ('pending', 'Pending Review'),
+        ('pending', 'Pending'),
+        ('under_review', 'Under Review'),
         ('approved', 'Approved'),
         ('rejected', 'Rejected'),
         ('interview', 'Interview Scheduled'),
@@ -200,3 +209,162 @@ class MembershipApplication(models.Model):
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
+
+class MembershipDocument(models.Model):
+    """
+    Supporting document uploaded during membership application.
+    Securely stored with randomized filenames.
+    """
+    application = models.ForeignKey(
+        MembershipApplication,
+        on_delete=models.CASCADE,
+        related_name='documents'
+    )
+    document = models.FileField(
+        upload_to='membership_documents/%Y/%m/',
+        help_text='Upload a supporting document (PDF, JPG, JPEG, PNG only)'
+    )
+    document_type = models.CharField(max_length=50, help_text='e.g., Birth Certificate, National ID, CV, Certificate')
+    original_filename = models.CharField(max_length=255, blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Membership Document'
+        verbose_name_plural = 'Membership Documents'
+        ordering = ['uploaded_at']
+
+    def __str__(self):
+        return f"{self.document_type} - {self.application.full_name}"
+    
+
+import secrets
+import hashlib
+from datetime import timedelta
+
+
+class OTP(models.Model):
+    """
+    One-Time Password for email verification and login.
+    OTP is hashed before storage for security.
+    """
+    PURPOSE_CHOICES = [
+        ('account_activation', 'Account Activation'),
+        ('login', 'Login Verification'),
+        ('password_reset', 'Password Reset'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='otps')
+    purpose = models.CharField(max_length=20, choices=PURPOSE_CHOICES)
+    otp_hash = models.CharField(max_length=128)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    used = models.BooleanField(default=False)
+    attempts = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    @classmethod
+    def generate_otp(cls, user, purpose):
+        """Generate a 6-digit OTP, hash it, and save."""
+        # Generate 6-digit OTP
+        raw_otp = ''.join([str(secrets.randbelow(10)) for _ in range(6)])
+
+        # Hash OTP before storage
+        otp_hash = hashlib.sha256(raw_otp.encode()).hexdigest()
+
+        # Create OTP record
+        otp = cls.objects.create(
+            user=user,
+            purpose=purpose,
+            otp_hash=otp_hash,
+            expires_at=timezone.now() + timedelta(minutes=10)
+        )
+
+        return raw_otp  # Return raw OTP to send via email
+
+    @classmethod
+    def verify_otp(cls, user, raw_otp, purpose):
+        """Verify an OTP. Returns True if valid, False otherwise."""
+        otp_hash = hashlib.sha256(raw_otp.encode()).hexdigest()
+
+        otp = cls.objects.filter(
+            user=user,
+            purpose=purpose,
+            otp_hash=otp_hash,
+            used=False,
+            expires_at__gt=timezone.now()
+        ).first()
+
+        if otp:
+            otp.used = True
+            otp.save()
+            return True
+
+        # Increment attempts on failed tries
+        cls.objects.filter(
+            user=user,
+            purpose=purpose,
+            used=False,
+            expires_at__gt=timezone.now()
+        ).update(attempts=models.F('attempts') + 1)
+
+        return False
+    
+class AuditLog(models.Model):
+    """
+    Immutable audit trail for sensitive membership actions.
+    """
+    ACTION_CHOICES = [
+        ('application_submitted', 'Application Submitted'),
+        ('application_under_review', 'Application Under Review'),
+        ('application_approved', 'Application Approved'),
+        ('application_rejected', 'Application Rejected'),
+        ('document_uploaded', 'Document Uploaded'),
+        ('invitation_sent', 'Invitation Sent'),
+        ('account_created', 'Account Created'),
+        ('otp_verified', 'OTP Verified'),
+        ('otp_failed', 'OTP Failed'),
+        ('password_reset_requested', 'Password Reset Requested'),
+        ('password_reset_completed', 'Password Reset Completed'),
+        ('role_changed', 'Role Changed'),
+        ('account_deactivated', 'Account Deactivated'),
+        ('account_reactivated', 'Account Reactivated'),
+    ]
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='audit_actions'
+    )
+    action = models.CharField(max_length=50, choices=ACTION_CHOICES)
+    description = models.TextField(blank=True)
+    target_user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='audit_targets'
+    )
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Audit Log'
+        verbose_name_plural = 'Audit Logs'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user} - {self.get_action_display()} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+
+def log_audit(user, action, description='', target_user=None, ip_address=None):
+    """Helper to create audit log entries."""
+    AuditLog.objects.create(
+        user=user,
+        action=action,
+        description=description,
+        target_user=target_user,
+        ip_address=ip_address
+    )

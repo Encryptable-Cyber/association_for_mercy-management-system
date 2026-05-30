@@ -114,3 +114,45 @@ class MembershipApplicationForm(forms.ModelForm):
                 'Please tell us more about your motivation (at least 20 characters).'
             )
         return motivation.strip()
+    
+
+from django import forms
+from django.core.validators import FileExtensionValidator
+from ..models import MembershipDocument
+
+ALLOWED_EXTENSIONS = ['pdf', 'jpg', 'jpeg', 'png']
+MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
+
+
+class MembershipDocumentForm(forms.ModelForm):
+    """Secure document upload form with file type and size validation."""
+    class Meta:
+        model = MembershipDocument
+        fields = ['document', 'document_type']
+        widgets = {
+            'document_type': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'e.g., Birth Certificate, National ID, CV'
+            }),
+            'document': forms.FileInput(attrs={
+                'class': 'form-control',
+                'accept': '.pdf,.jpg,.jpeg,.png'
+            }),
+        }
+
+    def clean_document(self):
+        """Validate file type and size."""
+        document = self.cleaned_data.get('document')
+        if document:
+            # Check extension
+            ext = document.name.split('.')[-1].lower()
+            if ext not in ALLOWED_EXTENSIONS:
+                raise forms.ValidationError(
+                    f'File type not allowed. Allowed types: {", ".join(ALLOWED_EXTENSIONS)}'
+                )
+            # Check size
+            if document.size > MAX_FILE_SIZE:
+                raise forms.ValidationError(
+                    f'File too large. Maximum size: {MAX_FILE_SIZE // (1024*1024)}MB'
+                )
+        return document

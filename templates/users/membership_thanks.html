@@ -1,5 +1,6 @@
 {% extends 'core/base_public.html' %}
-{% block title %}Application Submitted - Association for Mercy{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Application Submitted" %} - Association for Mercy{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
@@ -7,16 +8,22 @@
         <div class="card table-card p-5">
             <div class="card-body">
                 <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-                <h3 class="fw-bold mt-3">Application Submitted!</h3>
-                <p class="text-muted">Thank you for your interest in joining the Association for Mercy.</p>
-                <p class="text-muted">Our team will review your application and contact you with the next steps.</p>
+                <h3 class="fw-bold mt-3">{% trans "Application Submitted!" %}</h3>
+                <p class="text-muted">{% trans "Thank you for your interest in joining the Association for Mercy." %}</p>
+                <p class="text-muted">{% trans "Our team will review your application and contact you with the next steps." %}</p>
                 <hr>
-                <p class="small text-muted">
-                    <i class="bi bi-shield-lock me-1"></i>Your personal information is stored securely and will only be used for membership processing.
-                </p>
-                <a href="/" class="btn btn-primary rounded-pill px-4 mt-2">
-                    <i class="bi bi-house me-1"></i>Return Home
-                </a>
+                <div class="alert alert-warning d-flex align-items-center text-start" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+                    <div>
+                        <strong>{% trans "Don't forget!" %}</strong><br>
+                        {% trans "Please upload your supporting documents (ID, certificates, CV) to complete your application." %}
+                    </div>
+                </div>
+                <div class="d-flex gap-2 justify-content-center mt-3">
+                    <a href="/" class="btn btn-primary rounded-pill px-4">
+                        <i class="bi bi-house me-1"></i>{% trans "Return Home" %}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

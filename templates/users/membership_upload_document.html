@@ -1,0 +1,66 @@
+{% extends 'core/base_public.html' %}
+{% load i18n %}
+{% block title %}{% trans "Upload Documents" %} - Association for Mercy{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="text-center mb-4">
+            <i class="bi bi-file-earmark-arrow-up text-primary" style="font-size: 3rem;"></i>
+            <h3 class="fw-bold mt-2">{% trans "Upload Supporting Documents" %}</h3>
+            <p class="text-muted">{% trans "Application for:" %} <strong>{{ application.full_name }}</strong></p>
+        </div>
+
+        <!-- Already Uploaded Documents -->
+        {% if documents %}
+        <div class="card table-card mb-3">
+            <div class="card-header bg-white">
+                <h6 class="mb-0 fw-bold"><i class="bi bi-check-circle me-2"></i>{% trans "Uploaded Documents" %}</h6>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    {% for doc in documents %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ doc.document_type }}</strong><br>
+                            <small class="text-muted">{{ doc.original_filename }} ({{ doc.uploaded_at|date:"M d, Y H:i" }})</small>
+                        </div>
+                        <span class="badge bg-success">{% trans "Uploaded" %}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Upload Form -->
+        <div class="card table-card">
+            <div class="card-body p-4">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ form.document_type.id_for_label }}" class="form-label fw-medium required-field">{% trans "Document Type" %}</label>
+                        {{ form.document_type }}
+                        {% if form.document_type.errors %}<div class="text-danger small mt-1">{{ form.document_type.errors.0 }}</div>{% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.document.id_for_label }}" class="form-label fw-medium required-field">{% trans "Select Document" %}</label>
+                        {{ form.document }}
+                        <div class="form-text">{% trans "Allowed: PDF, JPG, JPEG, PNG (Max 5MB)" %}</div>
+                        {% if form.document.errors %}<div class="text-danger small mt-1">{{ form.document.errors.0 }}</div>{% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-cloud-upload me-1"></i>{% trans "Upload Document" %}
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <p class="text-center mt-3">
+            <a href="/" class="btn btn-outline-secondary btn-sm rounded-pill">
+                <i class="bi bi-house me-1"></i>{% trans "Return Home" %}
+            </a>
+        </p>
+    </div>
+</div>
+{% endblock %}

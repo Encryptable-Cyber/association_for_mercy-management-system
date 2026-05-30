@@ -5,7 +5,12 @@ from django.db.models import Sum
 from django.utils import timezone
 from datetime import datetime
 from core.permissions import staff_required, admin_required
-from core.reports import generate_pdf_report, generate_excel_report, log_export
+try:
+    from core.reports import generate_pdf_report, generate_excel_report, log_export
+except ImportError:
+    generate_pdf_report = None
+    generate_excel_report = None
+    log_export = None
 from .models import Donation, DonationIntent
 from .forms.donation_forms import DonationForm, DonationIntentForm
 from core.security import rate_limit

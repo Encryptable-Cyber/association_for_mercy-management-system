@@ -1,12 +1,13 @@
 {% extends 'core/base.html' %}
-{% block title %}Review Membership Application{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Review Membership Application" %}{% endblock %}
 
 {% block content %}
 <div class="mb-4">
     <a href="{% url 'users:membership_list' %}" class="text-decoration-none text-muted">
-        <i class="bi bi-arrow-left me-1"></i>Back to Applications
+        <i class="bi bi-arrow-left me-1"></i>{% trans "Back to Applications" %}
     </a>
-    <h4 class="fw-bold mt-2"><i class="bi bi-person-vcard me-2"></i>Review Application</h4>
+    <h4 class="fw-bold mt-2"><i class="bi bi-person-vcard me-2"></i>{% trans "Review Application" %}</h4>
 </div>
 
 <div class="row g-3">
@@ -14,59 +15,87 @@
     <div class="col-lg-7">
         <div class="card table-card mb-3">
             <div class="card-header bg-white">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-person me-2"></i>Personal Information</h6>
+                <h6 class="mb-0 fw-bold"><i class="bi bi-person me-2"></i>{% trans "Personal Information" %}</h6>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><strong>Full Name:</strong> {{ application.full_name }}</li>
-                            <li class="mb-2"><strong>Email:</strong> {{ application.email }}</li>
-                            <li class="mb-2"><strong>Phone:</strong> {{ application.phone }}</li>
-                            <li class="mb-2"><strong>Date of Birth:</strong> {{ application.date_of_birth|date:"F d, Y" }}</li>
-                            <li class="mb-2"><strong>Gender:</strong> {{ application.get_gender_display }}</li>
+                            <li class="mb-2"><strong>{% trans "Full Name:" %}</strong> {{ application.full_name }}</li>
+                            <li class="mb-2"><strong>{% trans "Email:" %}</strong> {{ application.email }}</li>
+                            <li class="mb-2"><strong>{% trans "Phone:" %}</strong> {{ application.phone }}</li>
+                            <li class="mb-2"><strong>{% trans "Date of Birth:" %}</strong> {{ application.date_of_birth|date:"F d, Y" }}</li>
+                            <li class="mb-2"><strong>{% trans "Gender:" %}</strong> {{ application.get_gender_display }}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-2"><strong>Nationality:</strong> {{ application.nationality|default:"—" }}</li>
-                            <li class="mb-2"><strong>Country:</strong> {{ application.country_of_residence|default:"—" }}</li>
-                            <li class="mb-2"><strong>City:</strong> {{ application.city|default:"—" }}</li>
-                            <li class="mb-2"><strong>Address:</strong> {{ application.address }}</li>
-                            <li class="mb-2"><strong>Submitted:</strong> {{ application.submitted_at|date:"F d, Y H:i" }}</li>
+                            <li class="mb-2"><strong>{% trans "Nationality:" %}</strong> {{ application.nationality|default:"—" }}</li>
+                            <li class="mb-2"><strong>{% trans "Country:" %}</strong> {{ application.country_of_residence|default:"—" }}</li>
+                            <li class="mb-2"><strong>{% trans "City:" %}</strong> {{ application.city|default:"—" }}</li>
+                            <li class="mb-2"><strong>{% trans "Address:" %}</strong> {{ application.address }}</li>
+                            <li class="mb-2"><strong>{% trans "Submitted:" %}</strong> {{ application.submitted_at|date:"F d, Y H:i" }}</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Uploaded Documents -->
         <div class="card table-card mb-3">
             <div class="card-header bg-white">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-briefcase me-2"></i>Professional Information</h6>
+                <h6 class="mb-0 fw-bold"><i class="bi bi-paperclip me-2"></i>{% trans "Supporting Documents" %}</h6>
+            </div>
+            <div class="card-body">
+                {% with documents=application.documents.all %}
+                {% if documents %}
+                <div class="list-group list-group-flush">
+                    {% for doc in documents %}
+                    <a href="{{ doc.document.url }}" target="_blank" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ doc.document_type }}</strong><br>
+                            <small class="text-muted">{{ doc.original_filename }}</small>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">
+                            <i class="bi bi-eye me-1"></i>{% trans "View" %}
+                        </span>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted text-center mb-0">{% trans "No documents uploaded yet." %}</p>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+
+        <div class="card table-card mb-3">
+            <div class="card-header bg-white">
+                <h6 class="mb-0 fw-bold"><i class="bi bi-briefcase me-2"></i>{% trans "Professional Information" %}</h6>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled mb-0">
-                    <li class="mb-2"><strong>Occupation:</strong> {{ application.occupation|default:"—" }}</li>
-                    <li class="mb-2"><strong>Employment Status:</strong> {{ application.get_employment_status_display }}</li>
-                    <li class="mb-2"><strong>Education:</strong> {{ application.get_education_level_display }}</li>
-                    <li class="mb-2"><strong>Professional Skills:</strong><br>{{ application.professional_skills|default:"—"|linebreaksbr }}</li>
-                    <li class="mb-2"><strong>Languages:</strong> {{ application.languages_spoken|default:"—" }}</li>
-                    <li class="mb-2"><strong>Heard from:</strong> {{ application.referral_source|default:"—" }}</li>
+                    <li class="mb-2"><strong>{% trans "Occupation:" %}</strong> {{ application.occupation|default:"—" }}</li>
+                    <li class="mb-2"><strong>{% trans "Employment Status:" %}</strong> {{ application.get_employment_status_display }}</li>
+                    <li class="mb-2"><strong>{% trans "Education:" %}</strong> {{ application.get_education_level_display }}</li>
+                    <li class="mb-2"><strong>{% trans "Professional Skills:" %}</strong><br>{{ application.professional_skills|default:"—"|linebreaksbr }}</li>
+                    <li class="mb-2"><strong>{% trans "Languages:" %}</strong> {{ application.languages_spoken|default:"—" }}</li>
+                    <li class="mb-2"><strong>{% trans "Heard from:" %}</strong> {{ application.referral_source|default:"—" }}</li>
                 </ul>
             </div>
         </div>
 
         <div class="card table-card">
             <div class="card-header bg-white">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-heart me-2"></i>Motivation & Contribution</h6>
+                <h6 class="mb-0 fw-bold"><i class="bi bi-heart me-2"></i>{% trans "Motivation & Contribution" %}</h6>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled mb-0">
-                    <li class="mb-3"><strong>Motivation:</strong><br>{{ application.motivation }}</li>
-                    <li class="mb-3"><strong>Contribution:</strong><br>{{ application.contribution|default:"—"|linebreaksbr }}</li>
-                    <li class="mb-3"><strong>Previous Volunteering:</strong><br>{{ application.previous_volunteering|default:"—"|linebreaksbr }}</li>
-                    <li class="mb-2"><strong>Areas of Interest:</strong> {{ application.areas_of_interest|default:"—" }}</li>
-                    <li class="mb-2"><strong>Availability:</strong> {{ application.availability|default:"—" }}</li>
+                    <li class="mb-3"><strong>{% trans "Motivation:" %}</strong><br>{{ application.motivation }}</li>
+                    <li class="mb-3"><strong>{% trans "Contribution:" %}</strong><br>{{ application.contribution|default:"—"|linebreaksbr }}</li>
+                    <li class="mb-3"><strong>{% trans "Previous Volunteering:" %}</strong><br>{{ application.previous_volunteering|default:"—"|linebreaksbr }}</li>
+                    <li class="mb-2"><strong>{% trans "Areas of Interest:" %}</strong> {{ application.areas_of_interest|default:"—" }}</li>
+                    <li class="mb-2"><strong>{% trans "Availability:" %}</strong> {{ application.availability|default:"—" }}</li>
                 </ul>
             </div>
         </div>
@@ -77,19 +106,19 @@
         <!-- Email Verification -->
         <div class="card table-card mb-3">
             <div class="card-header bg-white">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-envelope-check me-2"></i>Verify Email</h6>
+                <h6 class="mb-0 fw-bold"><i class="bi bi-envelope-check me-2"></i>{% trans "Verify Email" %}</h6>
             </div>
             <div class="card-body">
-                <p class="mb-2"><strong>Applicant Email:</strong></p>
+                <p class="mb-2"><strong>{% trans "Applicant Email:" %}</strong></p>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" value="{{ application.email }}" id="applicantEmail" readonly>
                     <button class="btn btn-outline-primary" type="button" onclick="copyEmail()">
-                        <i class="bi bi-clipboard"></i> Copy
+                        <i class="bi bi-clipboard"></i> {% trans "Copy" %}
                     </button>
                 </div>
                 <div class="alert alert-warning small mb-0">
                     <i class="bi bi-exclamation-triangle me-1"></i>
-                    <strong>Important:</strong> Verify this email address before approving. The signup link will be sent to this address.
+                    <strong>{% trans "Important:" %}</strong> {% trans "Verify this email address before approving. The signup link will be sent to this address." %}
                 </div>
             </div>
         </div>
@@ -98,22 +127,22 @@
         {% if application.status == 'approved' and application.signup_token %}
         <div class="card table-card mb-3 border-success">
             <div class="card-header bg-success bg-opacity-10">
-                <h6 class="mb-0 fw-bold text-success"><i class="bi bi-check-circle me-2"></i>Approved - Signup Link</h6>
+                <h6 class="mb-0 fw-bold text-success"><i class="bi bi-check-circle me-2"></i>{% trans "Approved - Signup Link" %}</h6>
             </div>
             <div class="card-body">
-                <p class="small text-muted mb-2">Share this link with the applicant:</p>
+                <p class="small text-muted mb-2">{% trans "Share this link with the applicant:" %}</p>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control form-control-sm" 
                            value="{{ request.scheme }}://{{ request.get_host }}/membership/signup/{{ application.signup_token }}/" 
                            id="signupLink" readonly>
                     <button class="btn btn-sm btn-outline-success" type="button" onclick="copySignupLink()">
-                        <i class="bi bi-clipboard me-1"></i>Copy
+                        <i class="bi bi-clipboard me-1"></i>{% trans "Copy" %}
                     </button>
                 </div>
                 {% if application.signup_token_used %}
-                <span class="badge bg-success"><i class="bi bi-person-check me-1"></i>Account Created</span>
+                <span class="badge bg-success"><i class="bi bi-person-check me-1"></i>{% trans "Account Created" %}</span>
                 {% else %}
-                <span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split me-1"></i>Awaiting Signup</span>
+                <span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split me-1"></i>{% trans "Awaiting Signup" %}</span>
                 {% endif %}
             </div>
         </div>
@@ -122,37 +151,38 @@
         <!-- Action Form -->
         <div class="card table-card">
             <div class="card-header bg-white">
-                <h6 class="mb-0 fw-bold">Take Action</h6>
+                <h6 class="mb-0 fw-bold">{% trans "Take Action" %}</h6>
             </div>
             <div class="card-body">
-                <p>Current status:
-                    <span class="badge {% if application.status == 'pending' %}badge-status-pending{% elif application.status == 'approved' %}badge-status-active{% elif application.status == 'interview' %}bg-info{% else %}badge-status-urgent{% endif %}">
+                <p>{% trans "Current status:" %}
+                    <span class="badge {% if application.status == 'pending' %}badge-status-pending{% elif application.status == 'under_review' %}badge-status-under-review{% elif application.status == 'approved' %}badge-status-active{% elif application.status == 'interview' %}bg-info{% else %}badge-status-urgent{% endif %}">
                         {{ application.get_status_display }}
                     </span>
                 </p>
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Update Status</label>
+                        <label class="form-label fw-medium">{% trans "Update Status" %}</label>
                         <select name="status" class="form-select" required>
-                            <option value="">-- Choose --</option>
-                            <option value="approved">✅ Approve (generates signup link)</option>
-                            <option value="interview">📅 Schedule Interview</option>
-                            <option value="rejected">❌ Reject</option>
+                            <option value="">-- {% trans "Choose" %} --</option>
+                            <option value="under_review">🔍 {% trans "Mark Under Review" %}</option>
+                            <option value="approved">✅ {% trans "Approve (generates signup link)" %}</option>
+                            <option value="interview">📅 {% trans "Schedule Interview" %}</option>
+                            <option value="rejected">❌ {% trans "Reject" %}</option>
                         </select>
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="emailVerified" name="email_verified" required>
                         <label class="form-check-label small" for="emailVerified">
-                            I have verified that <strong>{{ application.email }}</strong> is the correct email address for this applicant.
+                            {% trans "I have verified that" %} <strong>{{ application.email }}</strong> {% trans "is the correct email address for this applicant." %}
                         </label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Admin Notes</label>
-                        <textarea name="admin_notes" class="form-control" rows="3" placeholder="Add notes about this decision...">{{ application.admin_notes }}</textarea>
+                        <label class="form-label fw-medium">{% trans "Admin Notes" %}</label>
+                        <textarea name="admin_notes" class="form-control" rows="3" placeholder="{% trans 'Add notes about this decision...' %}">{{ application.admin_notes }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-check-lg me-1"></i>Update Status
+                        <i class="bi bi-check-lg me-1"></i>{% trans "Update Status" %}
                     </button>
                 </form>
             </div>
@@ -171,7 +201,7 @@ function copyEmail() {
     
     var btn = event.target.closest('button');
     var originalHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="bi bi-check"></i> Copied!';
+    btn.innerHTML = '<i class="bi bi-check"></i> {% trans "Copied!" %}';
     btn.classList.add('btn-success');
     btn.classList.remove('btn-outline-primary');
     setTimeout(function() {
@@ -189,7 +219,7 @@ function copySignupLink() {
     
     var btn = event.target.closest('button');
     var originalHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="bi bi-check"></i> Copied!';
+    btn.innerHTML = '<i class="bi bi-check"></i> {% trans "Copied!" %}';
     setTimeout(function() {
         btn.innerHTML = originalHTML;
     }, 2000);

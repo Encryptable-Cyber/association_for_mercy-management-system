@@ -155,7 +155,7 @@ association_for_mercy/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/association-for-mercy.git
+git clone https://github.com/Encryptable-Cyber/association_for_mercy-management-system.git
 cd association-for-mercy
 ```
 

@@ -8,6 +8,25 @@
     <p class="text-muted">{% trans "Manage system users, roles, and account status." %}</p>
 </div>
 
+<!-- Reset Link Display -->
+{% if request.session.reset_link %}
+<div class="alert alert-info alert-dismissible fade show mb-3" role="alert">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <strong><i class="bi bi-key-fill me-2"></i>{% trans "Password Reset Link Generated" %}</strong><br>
+            <small class="text-muted">{% trans "For:" %} {{ request.session.reset_user_email }}</small>
+            <div class="input-group mt-2">
+                <input type="text" class="form-control form-control-sm" id="resetLink" value="{{ request.session.reset_link }}" readonly>
+                <button class="btn btn-outline-primary btn-sm" type="button" onclick="copyResetLink()">
+                    <i class="bi bi-clipboard me-1"></i>{% trans "Copy Link" %}
+                </button>
+            </div>
+        </div>
+        <a href="{% url 'users:user_management' %}" class="btn-close"></a>
+    </div>
+</div>
+{% endif %}
+
 <!-- Search & Filter -->
 <div class="card table-card mb-3">
     <div class="card-body">
@@ -89,6 +108,13 @@
                                     <i class="bi bi-{% if u.is_active %}person-x{% else %}person-check{% endif %}"></i>
                                 </button>
                             </form>
+                            <!-- Reset Password -->
+                            <form method="post" action="{% url 'users:user_reset_password' u.pk %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-info" title="{% trans 'Reset Password' %}">
+                                    <i class="bi bi-key"></i>
+                                </button>
+                            </form>
                             <!-- Change Role -->
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown">
@@ -134,4 +160,27 @@
         </table>
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+function copyResetLink() {
+    var copyText = document.getElementById("resetLink");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+
+    var btn = event.target.closest('button');
+    var originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check"></i> {% trans "Copied!" %}';
+    btn.classList.add('btn-success');
+    btn.classList.remove('btn-outline-primary');
+    setTimeout(function() {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-outline-primary');
+    }, 2000);
+}
+</script>
+{% endblock %}
+
 {% endblock %}

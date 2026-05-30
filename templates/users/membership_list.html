@@ -33,7 +33,9 @@
                     <td>{{ app.nationality|default:"—" }}</td>
                     <td>{{ app.occupation|default:"—" }}</td>
                     <td>
-                        <span class="badge {% if app.status == 'pending' %}badge-status-pending{% elif app.status == 'approved' %}badge-status-active{% elif app.status == 'rejected' %}badge-status-urgent{% elif app.status == 'interview' %}bg-info{% endif %}">
+                        <span class="badge {% if app.status == 'pending' %}badge-status-pending{% elif app.status == 'under_review' %}badge-status-under-review{% elif app.status == 'approved' %}badge-status-active{% elif app.status == 'rejected' %}badge-status-urgent{% elif app.status == 'interview' %}bg-info{% endif %}">
+                            {{ app.get_status_display }}
+                        </span>
                             {{ app.get_status_display }}
                         </span>
                     </td>

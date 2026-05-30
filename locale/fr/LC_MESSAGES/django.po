@@ -194,11 +194,26 @@ msgstr "Système"
 msgid "User Management"
 msgstr "Gestion des Utilisateurs"
 
+msgid "User Reports"
+msgstr "Rapports Utilisateurs"
+
+msgid "Reports"
+msgstr "Rapports"
+
 msgid "Manage system users, roles, and account status."
 msgstr "Gérer les utilisateurs, les rôles et le statut des comptes."
 
 msgid "Search by name or email..."
 msgstr "Rechercher par nom ou email..."
+
+msgid "Search by name or phone..."
+msgstr "Rechercher par nom ou téléphone..."
+
+msgid "Search donor or receipt..."
+msgstr "Rechercher donneur ou reçu..."
+
+msgid "Search..."
+msgstr "Rechercher..."
 
 msgid "All Roles"
 msgstr "Tous les Rôles"
@@ -215,14 +230,113 @@ msgstr "Staff"
 msgid "All Status"
 msgstr "Tous les Statuts"
 
+msgid "All Statuses"
+msgstr "Tous les Statuts"
+
 msgid "Active"
 msgstr "Actif"
 
 msgid "Disabled"
 msgstr "Désactivé"
 
+msgid "Inactive"
+msgstr "Inactif"
+
+msgid "Urgent"
+msgstr "Urgent"
+
+msgid "Pending"
+msgstr "En Attente"
+
+msgid "Approved"
+msgstr "Approuvé"
+
+msgid "Rejected"
+msgstr "Rejeté"
+
+msgid "Interview"
+msgstr "Entretien"
+
+msgid "Completed"
+msgstr "Terminé"
+
+msgid "Planned"
+msgstr "Planifié"
+
+msgid "All Methods"
+msgstr "Toutes les Méthodes"
+
+msgid "Cash"
+msgstr "Espèces"
+
+msgid "Bank Transfer"
+msgstr "Virement Bancaire"
+
+msgid "Mobile Money"
+msgstr "Mobile Money"
+
+msgid "Check"
+msgstr "Chèque"
+
+msgid "All Years"
+msgstr "Toutes les Années"
+
+msgid "All Months"
+msgstr "Tous les Mois"
+
+msgid "All Programs"
+msgstr "Tous les Programmes"
+
+msgid "All"
+msgstr "Tout"
+
+msgid "January"
+msgstr "Janvier"
+
+msgid "February"
+msgstr "Février"
+
+msgid "March"
+msgstr "Mars"
+
+msgid "April"
+msgstr "Avril"
+
+msgid "May"
+msgstr "Mai"
+
+msgid "June"
+msgstr "Juin"
+
+msgid "July"
+msgstr "Juillet"
+
+msgid "August"
+msgstr "Août"
+
+msgid "September"
+msgstr "Septembre"
+
+msgid "October"
+msgstr "Octobre"
+
+msgid "November"
+msgstr "Novembre"
+
+msgid "December"
+msgstr "Décembre"
+
 msgid "Filter"
 msgstr "Filtrer"
+
+msgid "Export PDF"
+msgstr "Exporter PDF"
+
+msgid "Export Excel"
+msgstr "Exporter Excel"
+
+msgid "Print"
+msgstr "Imprimer"
 
 msgid "Name"
 msgstr "Nom"
@@ -256,3 +370,518 @@ msgstr "Changer le Rôle"
 
 msgid "No users found."
 msgstr "Aucun utilisateur trouvé."
+
+msgid "No beneficiaries found."
+msgstr "Aucun bénéficiaire trouvé."
+
+msgid "No donations found."
+msgstr "Aucun don trouvé."
+
+msgid "No programs."
+msgstr "Aucun programme."
+
+msgid "No applications."
+msgstr "Aucune candidature."
+
+msgid "No users."
+msgstr "Aucun utilisateur."
+
+msgid "Back"
+msgstr "Retour"
+
+msgid "Back to Beneficiaries"
+msgstr "Retour aux Bénéficiaires"
+
+msgid "Back to Donations"
+msgstr "Retour aux Dons"
+
+msgid "Back to Applications"
+msgstr "Retour aux Candidatures"
+
+msgid "Back to Home"
+msgstr "Retour à l'Accueil"
+
+msgid "Back to Login"
+msgstr "Retour à la Connexion"
+
+msgid "Receipt"
+msgstr "Reçu"
+
+msgid "Donor"
+msgstr "Donateur"
+
+msgid "Amount"
+msgstr "Montant"
+
+msgid "Method"
+msgstr "Méthode"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Program"
+msgstr "Programme"
+
+msgid "Start"
+msgstr "Début"
+
+msgid "End"
+msgstr "Fin"
+
+msgid "Budget"
+msgstr "Budget"
+
+msgid "Created"
+msgstr "Créé"
+
+msgid "Submitted"
+msgstr "Soumis"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "Gender"
+msgstr "Genre"
+
+msgid "Nationality"
+msgstr "Nationalité"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Confirm Password"
+msgstr "Confirmer le Mot de passe"
+
+msgid "New Password"
+msgstr "Nouveau Mot de passe"
+
+msgid "Change Password"
+msgstr "Changer le Mot de passe"
+
+msgid "Reset Password"
+msgstr "Réinitialiser le Mot de passe"
+
+msgid "Sign In"
+msgstr "Se Connecter"
+
+msgid "Sign in to your staff account"
+msgstr "Connectez-vous à votre compte staff"
+
+msgid "Invalid email or password. Please try again."
+msgstr "Email ou mot de passe invalide. Veuillez réessayer."
+
+msgid "Email address"
+msgstr "Adresse email"
+
+msgid "Enter your email"
+msgstr "Entrez votre email"
+
+msgid "Enter your password"
+msgstr "Entrez votre mot de passe"
+
+msgid "Forgot your password?"
+msgstr "Mot de passe oublié ?"
+
+msgid "View and export beneficiary data."
+msgstr "Voir et exporter les données des bénéficiaires."
+
+msgid "View and export donation data."
+msgstr "Voir et exporter les données des dons."
+
+msgid "View and export program data."
+msgstr "Voir et exporter les données des programmes."
+
+msgid "Beneficiary Report"
+msgstr "Rapport des Bénéficiaires"
+
+msgid "Donation Report"
+msgstr "Rapport des Dons"
+
+msgid "Program Report"
+msgstr "Rapport des Programmes"
+
+msgid "Membership Report"
+msgstr "Rapport d'Adhésion"
+
+msgid "Membership Application Report"
+msgstr "Rapport des Candidatures"
+
+msgid "User Report"
+msgstr "Rapport Utilisateurs"
+
+msgid "Make a Difference"
+msgstr "Faire la Différence"
+
+msgid "Tell us what you'd like to donate, and we'll get back to you."
+msgstr "Dites-nous ce que vous souhaitez donner, et nous vous contacterons."
+
+msgid "Your Information"
+msgstr "Vos Informations"
+
+msgid "Full Name"
+msgstr "Nom Complet"
+
+msgid "Country of Residence"
+msgstr "Pays de Résidence"
+
+msgid "Donation Details"
+msgstr "Détails du Don"
+
+msgid "Donation Type"
+msgstr "Type de Don"
+
+msgid "Currency"
+msgstr "Devise"
+
+msgid "Estimated Value"
+msgstr "Valeur Estimée"
+
+msgid "Frequency"
+msgstr "Fréquence"
+
+msgid "Preferred Contact Method"
+msgstr "Méthode de Contact Préférée"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Additional Notes"
+msgstr "Notes Supplémentaires"
+
+msgid "Submit Donation Intent"
+msgstr "Soumettre l'Intention de Don"
+
+msgid "Join Our Mission"
+msgstr "Rejoignez Notre Mission"
+
+msgid "Apply to become a member of the Association for Mercy. Tell us about yourself and how you'd like to contribute."
+msgstr "Postulez pour devenir membre de l'Association pour la Miséricorde. Parlez-nous de vous et de comment vous souhaitez contribuer."
+
+msgid "Personal Information"
+msgstr "Informations Personnelles"
+
+msgid "First Name"
+msgstr "Prénom"
+
+msgid "Last Name"
+msgstr "Nom"
+
+msgid "Date of Birth"
+msgstr "Date de Naissance"
+
+msgid "City"
+msgstr "Ville"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Professional Information"
+msgstr "Informations Professionnelles"
+
+msgid "Occupation"
+msgstr "Profession"
+
+msgid "Employment Status"
+msgstr "Statut d'Emploi"
+
+msgid "Education Level"
+msgstr "Niveau d'Éducation"
+
+msgid "Professional Skills"
+msgstr "Compétences Professionnelles"
+
+msgid "Languages Spoken"
+msgstr "Langues Parlées"
+
+msgid "How did you hear about us?"
+msgstr "Comment avez-vous entendu parler de nous ?"
+
+msgid "Motivation & Contribution"
+msgstr "Motivation et Contribution"
+
+msgid "Why do you want to join?"
+msgstr "Pourquoi voulez-vous nous rejoindre ?"
+
+msgid "What can you contribute?"
+msgstr "Que pouvez-vous apporter ?"
+
+msgid "Previous Volunteering Experience"
+msgstr "Expérience de Bénévolat Antérieure"
+
+msgid "Areas of Interest"
+msgstr "Domaines d'Intérêt"
+
+msgid "Availability"
+msgstr "Disponibilité"
+
+msgid "Submit Application"
+msgstr "Soumettre la Candidature"
+
+msgid "Review Membership Application"
+msgstr "Examiner la Candidature"
+
+msgid "Review Application"
+msgstr "Examiner la Demande"
+
+msgid "Full Name:"
+msgstr "Nom Complet :"
+
+msgid "Email:"
+msgstr "Email :"
+
+msgid "Phone:"
+msgstr "Téléphone :"
+
+msgid "Date of Birth:"
+msgstr "Date de Naissance :"
+
+msgid "Gender:"
+msgstr "Genre :"
+
+msgid "Nationality:"
+msgstr "Nationalité :"
+
+msgid "Country:"
+msgstr "Pays :"
+
+msgid "City:"
+msgstr "Ville :"
+
+msgid "Address:"
+msgstr "Adresse :"
+
+msgid "Submitted:"
+msgstr "Soumis le :"
+
+msgid "Occupation:"
+msgstr "Profession :"
+
+msgid "Employment Status:"
+msgstr "Statut d'Emploi :"
+
+msgid "Education:"
+msgstr "Éducation :"
+
+msgid "Professional Skills:"
+msgstr "Compétences Professionnelles :"
+
+msgid "Languages:"
+msgstr "Langues :"
+
+msgid "Heard from:"
+msgstr "Entendu par :"
+
+msgid "Motivation:"
+msgstr "Motivation :"
+
+msgid "Contribution:"
+msgstr "Contribution :"
+
+msgid "Previous Volunteering:"
+msgstr "Bénévolat Antérieur :"
+
+msgid "Areas of Interest:"
+msgstr "Domaines d'Intérêt :"
+
+msgid "Availability:"
+msgstr "Disponibilité :"
+
+msgid "Supporting Documents"
+msgstr "Documents Justificatifs"
+
+msgid "No documents uploaded yet."
+msgstr "Aucun document téléchargé pour le moment."
+
+msgid "View"
+msgstr "Voir"
+
+msgid "Verify Email"
+msgstr "Vérifier l'Email"
+
+msgid "Applicant Email:"
+msgstr "Email du Candidat :"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Important:"
+msgstr "Important :"
+
+msgid "Verify this email address before approving. The signup link will be sent to this address."
+msgstr "Vérifiez cette adresse email avant d'approuver. Le lien d'inscription sera envoyé à cette adresse."
+
+msgid "Approved - Signup Link"
+msgstr "Approuvé - Lien d'Inscription"
+
+msgid "Share this link with the applicant:"
+msgstr "Partagez ce lien avec le candidat :"
+
+msgid "Account Created"
+msgstr "Compte Créé"
+
+msgid "Awaiting Signup"
+msgstr "En Attente d'Inscription"
+
+msgid "Take Action"
+msgstr "Passer à l'Action"
+
+msgid "Current status:"
+msgstr "Statut actuel :"
+
+msgid "Update Status"
+msgstr "Mettre à Jour le Statut"
+
+msgid "Choose"
+msgstr "Choisir"
+
+msgid "Approve (generates signup link)"
+msgstr "Approuver (génère un lien d'inscription)"
+
+msgid "Schedule Interview"
+msgstr "Planifier un Entretien"
+
+msgid "Reject"
+msgstr "Rejeter"
+
+msgid "I have verified that"
+msgstr "J'ai vérifié que"
+
+msgid "is the correct email address for this applicant."
+msgstr "est l'adresse email correcte pour ce candidat."
+
+msgid "Admin Notes"
+msgstr "Notes Admin"
+
+msgid "Add notes about this decision..."
+msgstr "Ajouter des notes sur cette décision..."
+
+msgid "Copied!"
+msgstr "Copié !"
+
+msgid "Application Submitted"
+msgstr "Candidature Soumise"
+
+msgid "Application Submitted!"
+msgstr "Candidature Soumise !"
+
+msgid "Thank you for your interest in joining the Association for Mercy."
+msgstr "Merci de votre intérêt pour rejoindre l'Association pour la Miséricorde."
+
+msgid "Our team will review your application and contact you with the next steps."
+msgstr "Notre équipe examinera votre candidature et vous contactera pour les prochaines étapes."
+
+msgid "Don't forget!"
+msgstr "N'oubliez pas !"
+
+msgid "Please upload your supporting documents (ID, certificates, CV) to complete your application."
+msgstr "Veuillez télécharger vos documents justificatifs (pièce d'identité, certificats, CV) pour compléter votre dossier."
+
+msgid "Return Home"
+msgstr "Retour à l'Accueil"
+
+msgid "Upload Documents"
+msgstr "Télécharger des Documents"
+
+msgid "Upload Supporting Documents"
+msgstr "Télécharger des Documents Justificatifs"
+
+msgid "Application for:"
+msgstr "Candidature de :"
+
+msgid "Uploaded Documents"
+msgstr "Documents Téléchargés"
+
+msgid "Uploaded"
+msgstr "Téléchargé"
+
+msgid "Document Type"
+msgstr "Type de Document"
+
+msgid "Select Document"
+msgstr "Sélectionner un Document"
+
+msgid "Allowed: PDF, JPG, JPEG, PNG (Max 5MB)"
+msgstr "Autorisés : PDF, JPG, JPEG, PNG (Max 5 Mo)"
+
+msgid "Upload Document"
+msgstr "Télécharger le Document"
+
+msgid "Password Reset Link Generated"
+msgstr "Lien de Réinitialisation Généré"
+
+msgid "For:"
+msgstr "Pour :"
+
+msgid "Copy Link"
+msgstr "Copier le Lien"
+
+msgid "Reset Your Password"
+msgstr "Réinitialisez Votre Mot de Passe"
+
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+
+msgid "your@email.com"
+msgstr "votre@email.com"
+
+msgid "Send Reset Link"
+msgstr "Envoyer le Lien"
+
+msgid "Email Sent"
+msgstr "Email Envoyé"
+
+msgid "Check Your Email"
+msgstr "Vérifiez Votre Email"
+
+msgid "We've sent you an email with a link to reset your password. Please check your inbox and follow the instructions."
+msgstr "Nous vous avons envoyé un email avec un lien pour réinitialiser votre mot de passe. Veuillez vérifier votre boîte de réception et suivre les instructions."
+
+msgid "Return to Login"
+msgstr "Retour à la Connexion"
+
+msgid "Set New Password"
+msgstr "Définir un Nouveau Mot de passe"
+
+msgid "Please enter your new password twice."
+msgstr "Veuillez entrer votre nouveau mot de passe deux fois."
+
+msgid "At least 8 characters. Include letters, numbers, and symbols."
+msgstr "Au moins 8 caractères. Incluez lettres, chiffres et symboles."
+
+msgid "The password reset link is invalid, possibly because it has already been used or has expired. Please request a new password reset."
+msgstr "Le lien de réinitialisation est invalide, peut-être parce qu'il a déjà été utilisé ou a expiré. Veuillez demander une nouvelle réinitialisation."
+
+msgid "Request New Reset Link"
+msgstr "Demander un Nouveau Lien"
+
+msgid "Password Changed"
+msgstr "Mot de passe Changé"
+
+msgid "Password Changed!"
+msgstr "Mot de passe Changé !"
+
+msgid "Your password has been successfully changed. You can now log in with your new password."
+msgstr "Votre mot de passe a été changé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe."
+
+msgid "Document uploaded successfully!"
+msgstr "Document téléchargé avec succès !"
+
+#, python-format
+msgid "%(count)s beneficiaries found"
+msgstr "%(count)s bénéficiaires trouvés"
+
+#, python-format
+msgid "%(count)s donations found"
+msgstr "%(count)s dons trouvés"
+
+#, python-format
+msgid "%(count)s programs found"
+msgstr "%(count)s programmes trouvés"
+
+#, python-format
+msgid "%(count)s applications found"
+msgstr "%(count)s candidatures trouvées"
+
+#, python-format
+msgid "%(count)s users found"
+msgstr "%(count)s utilisateurs trouvés"

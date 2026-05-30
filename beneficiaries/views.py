@@ -3,7 +3,13 @@ from django.contrib import messages
 from django.db.models import Q
 from datetime import datetime
 from core.permissions import staff_required
-from core.reports import generate_pdf_report, generate_excel_report, log_export
+try:
+    from core.reports import generate_pdf_report, generate_excel_report, log_export
+except ImportError:
+    # ReportLab/Openpyxl not installed — reports will be disabled
+    generate_pdf_report = None
+    generate_excel_report = None
+    log_export = None
 from .models import Beneficiary, Case, Intervention
 from .forms.beneficiary_forms import BeneficiaryForm, CaseForm, InterventionForm
 

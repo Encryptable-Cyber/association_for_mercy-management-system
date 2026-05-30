@@ -1,14 +1,14 @@
 {% extends 'core/base_public.html' %}
-{% load static %}
-{% block title %}Staff Login - Association for Mercy{% endblock %}
+{% load static %}{% load i18n %}
+{% block title %}{% trans "Staff Login" %} - Association for Mercy{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-5 col-md-7">
         <div class="text-center mb-4">
             <img src="{% static 'images/logo.png' %}" alt="Logo" height="65" class="mb-3">
-            <h4 class="fw-bold">Association for Mercy</h4>
-            <p class="text-muted">Sign in to your staff account</p>
+            <h4 class="fw-bold">{% trans "Association for Mercy" %}</h4>
+            <p class="text-muted">{% trans "Sign in to your staff account" %}</p>
         </div>
 
         <div class="card table-card">
@@ -16,34 +16,40 @@
                 {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                    Invalid email or password. Please try again.
+                    {% trans "Invalid email or password. Please try again." %}
                 </div>
                 {% endif %}
 
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="id_username" class="form-label fw-medium required-field">Email address</label>
+                        <label for="id_username" class="form-label fw-medium required-field">{% trans "Email address" %}</label>
                         <input type="email" name="username" id="id_username"
-                               class="form-control" placeholder="Enter your email"
+                               class="form-control" placeholder="{% trans 'Enter your email' %}"
                                required autofocus>
                     </div>
                     <div class="mb-3">
-                        <label for="id_password" class="form-label fw-medium required-field">Password</label>
+                        <label for="id_password" class="form-label fw-medium required-field">{% trans "Password" %}</label>
                         <input type="password" name="password" id="id_password"
-                               class="form-control" placeholder="Enter your password"
+                               class="form-control" placeholder="{% trans 'Enter your password' %}"
                                required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">
-                        <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                        <i class="bi bi-box-arrow-in-right me-2"></i>{% trans "Sign In" %}
                     </button>
                 </form>
+
+                {% comment %} <div class="text-center mt-3">
+                    <a href="{% url 'password_reset' %}" class="text-muted small">
+                        <i class="bi bi-question-circle me-1"></i>{% trans "Forgot your password?" %}
+                    </a>
+                </div> {% endcomment %}
             </div>
         </div>
 
         <p class="text-center mt-3">
             <a href="/" class="text-muted small">
-                <i class="bi bi-arrow-left me-1"></i>Back to Home
+                <i class="bi bi-arrow-left me-1"></i>{% trans "Back to Home" %}
             </a>
         </p>
     </div>

@@ -159,6 +159,11 @@
             color: #475569;
         }
 
+        .badge-status-under-review {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
         /* ── Responsive ─────────────────── */
         @media (max-width: 768px) {
             .sidebar {
@@ -205,25 +210,32 @@
             </a>
 
             <div class="d-flex align-items-center ms-auto">
+
                 <!-- Language Switcher -->
                 <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center me-3">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ request.path }}">
-                    <select name="language" class="form-select form-select-sm" style="width: auto; font-size: 0.8rem;" onchange="this.form.submit()">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% for lang_code, lang_name in LANGUAGES %}
-                        <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
-                            {{ lang_name }}
-                        </option>
-                        {% endfor %}
+                    {% get_current_language as CURRENT_LANG %}
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" onclick="switchLang('en')"
+                           class="btn btn-sm {% if CURRENT_LANG == 'en' %}btn-primary{% else %}btn-outline-secondary{% endif %}">EN</button>
+                        <button type="button" onclick="switchLang('fr')"
+                           class="btn btn-sm {% if CURRENT_LANG == 'fr' %}btn-primary{% else %}btn-outline-secondary{% endif %}">FR</button>
+                    </div>
+                    <select name="language" class="d-none" id="langSelect">
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
                     </select>
                 </form>
 
                 {% if user.is_authenticated %}
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle user-dropdown" type="button" data-bs-toggle="dropdown">
+                    <button class="btn dropdown-toggle user-dropdown d-flex align-items-center" type="button" data-bs-toggle="dropdown">
+                        {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Profile" class="rounded-circle me-2" style="width: 32px; height: 32px; object-fit: cover;">
+                        {% else %}
                         <i class="bi bi-person-circle me-1"></i>
+                        {% endif %}
                         {{ user.get_full_name|default:user.email }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -259,7 +271,6 @@
             <a href="{% url 'beneficiaries:list' %}" class="nav-link">
                 <i class="bi bi-people-fill"></i>{% trans "Beneficiaries" %}
             </a>
-
             <a href="{% url 'beneficiaries:report' %}" class="nav-link">
                 <i class="bi bi-file-earmark-bar-graph"></i>{% trans "Reports" %}
             </a>
@@ -285,6 +296,9 @@
             </a>
             <a href="{% url 'users:user_report' %}" class="nav-link">
                 <i class="bi bi-file-earmark-bar-graph"></i>{% trans "User Reports" %}
+            </a>
+            <a href="{% url 'users:audit_log' %}" class="nav-link">
+                <i class="bi bi-journal-check"></i>{% trans "Audit Log" %}
             </a>
             {% endif %}
 
@@ -345,6 +359,13 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    function switchLang(lang) {
+        document.getElementById('langSelect').value = lang;
+        document.getElementById('langSelect').closest('form').submit();
+    }
+    </script>
 
 </body>
 </html>

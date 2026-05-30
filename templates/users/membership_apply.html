@@ -1,13 +1,14 @@
 {% extends 'core/base_public.html' %}
-{% block title %}Apply for Membership - Association for Mercy{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Apply for Membership" %} - Association for Mercy{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-9">
         <div class="text-center mb-4">
             <i class="bi bi-person-plus-fill text-primary" style="font-size: 3rem;"></i>
-            <h3 class="fw-bold mt-2">Join Our Mission</h3>
-            <p class="text-muted">Apply to become a member of the Association for Mercy. Tell us about yourself and how you'd like to contribute.</p>
+            <h3 class="fw-bold mt-2">{% trans "Join Our Mission" %}</h3>
+            <p class="text-muted">{% trans "Apply to become a member of the Association for Mercy. Tell us about yourself and how you'd like to contribute." %}</p>
         </div>
 
         <div class="card table-card">
@@ -15,117 +16,105 @@
                 <form method="post">
                     {% csrf_token %}
 
-                    <!-- Personal Information -->
-                    <h6 class="fw-bold mb-3"><i class="bi bi-person me-2"></i>Personal Information</h6>
+                    <h6 class="fw-bold mb-3"><i class="bi bi-person me-2"></i>{% trans "Personal Information" %}</h6>
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
-                            <label for="{{ form.first_name.id_for_label }}" class="form-label fw-medium required-field">First Name</label>
+                            <label for="{{ form.first_name.id_for_label }}" class="form-label fw-medium required-field">{% trans "First Name" %}</label>
                             {{ form.first_name }}
-                            {% if form.first_name.errors %}<div class="text-danger small mt-1">{{ form.first_name.errors.0 }}</div>{% endif %}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.last_name.id_for_label }}" class="form-label fw-medium required-field">Last Name</label>
+                            <label for="{{ form.last_name.id_for_label }}" class="form-label fw-medium required-field">{% trans "Last Name" %}</label>
                             {{ form.last_name }}
-                            {% if form.last_name.errors %}<div class="text-danger small mt-1">{{ form.last_name.errors.0 }}</div>{% endif %}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.gender.id_for_label }}" class="form-label fw-medium">Gender</label>
+                            <label for="{{ form.gender.id_for_label }}" class="form-label fw-medium">{% trans "Gender" %}</label>
                             {{ form.gender }}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.date_of_birth.id_for_label }}" class="form-label fw-medium required-field">Date of Birth</label>
+                            <label for="{{ form.date_of_birth.id_for_label }}" class="form-label fw-medium required-field">{% trans "Date of Birth" %}</label>
                             {{ form.date_of_birth }}
-                            {% if form.date_of_birth.errors %}<div class="text-danger small mt-1">{{ form.date_of_birth.errors.0 }}</div>{% endif %}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.email.id_for_label }}" class="form-label fw-medium required-field">Email</label>
+                            <label for="{{ form.email.id_for_label }}" class="form-label fw-medium required-field">{% trans "Email" %}</label>
                             {{ form.email }}
-                            {% if form.email.errors %}<div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>{% endif %}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.phone.id_for_label }}" class="form-label fw-medium required-field">Phone</label>
+                            <label for="{{ form.phone.id_for_label }}" class="form-label fw-medium required-field">{% trans "Phone" %}</label>
                             {{ form.phone }}
-                            {% if form.phone.errors %}<div class="text-danger small mt-1">{{ form.phone.errors.0 }}</div>{% endif %}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.nationality.id_for_label }}" class="form-label fw-medium">Nationality</label>
+                            <label for="{{ form.nationality.id_for_label }}" class="form-label fw-medium">{% trans "Nationality" %}</label>
                             {{ form.nationality }}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.country_of_residence.id_for_label }}" class="form-label fw-medium">Country of Residence</label>
+                            <label for="{{ form.country_of_residence.id_for_label }}" class="form-label fw-medium">{% trans "Country of Residence" %}</label>
                             {{ form.country_of_residence }}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.city.id_for_label }}" class="form-label fw-medium">City</label>
+                            <label for="{{ form.city.id_for_label }}" class="form-label fw-medium">{% trans "City" %}</label>
                             {{ form.city }}
                         </div>
                         <div class="col-12">
-                            <label for="{{ form.address.id_for_label }}" class="form-label fw-medium required-field">Address</label>
+                            <label for="{{ form.address.id_for_label }}" class="form-label fw-medium required-field">{% trans "Address" %}</label>
                             {{ form.address }}
-                            {% if form.address.errors %}<div class="text-danger small mt-1">{{ form.address.errors.0 }}</div>{% endif %}
                         </div>
                     </div>
 
-                    <!-- Professional Information -->
-                    <h6 class="fw-bold mb-3"><i class="bi bi-briefcase me-2"></i>Professional Information</h6>
+                    <h6 class="fw-bold mb-3"><i class="bi bi-briefcase me-2"></i>{% trans "Professional Information" %}</h6>
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
-                            <label for="{{ form.occupation.id_for_label }}" class="form-label fw-medium">Occupation</label>
+                            <label for="{{ form.occupation.id_for_label }}" class="form-label fw-medium">{% trans "Occupation" %}</label>
                             {{ form.occupation }}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.employment_status.id_for_label }}" class="form-label fw-medium">Employment Status</label>
+                            <label for="{{ form.employment_status.id_for_label }}" class="form-label fw-medium">{% trans "Employment Status" %}</label>
                             {{ form.employment_status }}
                         </div>
                         <div class="col-md-4">
-                            <label for="{{ form.education_level.id_for_label }}" class="form-label fw-medium">Education Level</label>
+                            <label for="{{ form.education_level.id_for_label }}" class="form-label fw-medium">{% trans "Education Level" %}</label>
                             {{ form.education_level }}
                         </div>
                         <div class="col-12">
-                            <label for="{{ form.professional_skills.id_for_label }}" class="form-label fw-medium">Professional Skills</label>
+                            <label for="{{ form.professional_skills.id_for_label }}" class="form-label fw-medium">{% trans "Professional Skills" %}</label>
                             {{ form.professional_skills }}
-                            <div class="form-text">List skills relevant to NGO work</div>
                         </div>
                         <div class="col-md-6">
-                            <label for="{{ form.languages_spoken.id_for_label }}" class="form-label fw-medium">Languages Spoken</label>
+                            <label for="{{ form.languages_spoken.id_for_label }}" class="form-label fw-medium">{% trans "Languages Spoken" %}</label>
                             {{ form.languages_spoken }}
                         </div>
                         <div class="col-md-6">
-                            <label for="{{ form.referral_source.id_for_label }}" class="form-label fw-medium">How did you hear about us?</label>
+                            <label for="{{ form.referral_source.id_for_label }}" class="form-label fw-medium">{% trans "How did you hear about us?" %}</label>
                             {{ form.referral_source }}
                         </div>
                     </div>
 
-                    <!-- Motivation & Contribution -->
-                    <h6 class="fw-bold mb-3"><i class="bi bi-heart me-2"></i>Motivation & Contribution</h6>
+                    <h6 class="fw-bold mb-3"><i class="bi bi-heart me-2"></i>{% trans "Motivation & Contribution" %}</h6>
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="{{ form.motivation.id_for_label }}" class="form-label fw-medium required-field">Why do you want to join?</label>
+                            <label for="{{ form.motivation.id_for_label }}" class="form-label fw-medium required-field">{% trans "Why do you want to join?" %}</label>
                             {{ form.motivation }}
-                            {% if form.motivation.errors %}<div class="text-danger small mt-1">{{ form.motivation.errors.0 }}</div>{% endif %}
                         </div>
                         <div class="col-12">
-                            <label for="{{ form.contribution.id_for_label }}" class="form-label fw-medium">What can you contribute?</label>
+                            <label for="{{ form.contribution.id_for_label }}" class="form-label fw-medium">{% trans "What can you contribute?" %}</label>
                             {{ form.contribution }}
                         </div>
                         <div class="col-12">
-                            <label for="{{ form.previous_volunteering.id_for_label }}" class="form-label fw-medium">Previous Volunteering Experience</label>
+                            <label for="{{ form.previous_volunteering.id_for_label }}" class="form-label fw-medium">{% trans "Previous Volunteering Experience" %}</label>
                             {{ form.previous_volunteering }}
                         </div>
                         <div class="col-md-6">
-                            <label for="{{ form.areas_of_interest.id_for_label }}" class="form-label fw-medium">Areas of Interest</label>
+                            <label for="{{ form.areas_of_interest.id_for_label }}" class="form-label fw-medium">{% trans "Areas of Interest" %}</label>
                             {{ form.areas_of_interest }}
                         </div>
                         <div class="col-md-6">
-                            <label for="{{ form.availability.id_for_label }}" class="form-label fw-medium">Availability</label>
+                            <label for="{{ form.availability.id_for_label }}" class="form-label fw-medium">{% trans "Availability" %}</label>
                             {{ form.availability }}
-                            <div class="form-text">How much time can you commit?</div>
                         </div>
                     </div>
 
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary btn-lg w-100">
-                            <i class="bi bi-send me-2"></i>Submit Application
+                            <i class="bi bi-send me-2"></i>{% trans "Submit Application" %}
                         </button>
                     </div>
                 </form>

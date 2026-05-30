@@ -1,4 +1,5 @@
 {% extends 'core/base_public.html' %}
+{% load i18n %}
 {% block title %}Create Your Account - Association for Mercy{% endblock %}
 
 {% block content %}
@@ -20,7 +21,7 @@
                     </div>
                 </div>
 
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label fw-medium">Email</label>
@@ -39,6 +40,12 @@
                         <input type="password" name="password2" id="password2"
                                class="form-control" placeholder="Repeat your password"
                                minlength="8" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="profile_picture" class="form-label fw-medium">{% trans "Profile Picture" %}</label>
+                        <input type="file" name="profile_picture" id="profile_picture"
+                               class="form-control" accept=".jpg,.jpeg,.png">
+                        <div class="form-text">{% trans "Optional. JPG, JPEG, PNG only (Max 2MB)" %}</div>
                     </div>
                     <button type="submit" class="btn btn-success w-100">
                         <i class="bi bi-person-check me-2"></i>Create My Account

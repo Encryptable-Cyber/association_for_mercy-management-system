@@ -3,7 +3,14 @@ from django.contrib import messages
 from django.db.models import Q
 from core.permissions import staff_required
 from .models import Program
+from datetime import datetime
 from .forms.program_forms import ProgramForm
+try:
+    from core.reports import generate_pdf_report, generate_excel_report, log_export
+except ImportError:
+    generate_pdf_report = None
+    generate_excel_report = None
+    log_export = None
 
 
 @staff_required
@@ -71,8 +78,6 @@ def program_edit(request, pk):
     })
 
 # ─── Reporting Views ──────────────────────────────────────────
-from datetime import datetime
-from core.reports import generate_pdf_report, generate_excel_report, log_export
 
 @staff_required
 def program_report(request):
