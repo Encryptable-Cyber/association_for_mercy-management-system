@@ -1,0 +1,331 @@
+[INFO] 2026-05-31 15:26:14,855 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 15:28:57,838 autoreload /app/core/security.py changed, reloading.
+[INFO] 2026-05-31 15:28:58,739 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 15:29:06,613 autoreload /app/users/views.py changed, reloading.
+[INFO] 2026-05-31 15:29:07,515 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 15:29:13,034 autoreload /app/donations/views.py changed, reloading.
+[INFO] 2026-05-31 15:29:13,889 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 15:30:02,105 autoreload /app/donations/views.py changed, reloading.
+[INFO] 2026-05-31 15:30:03,073 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 15:30:27,086 autoreload /app/users/views.py changed, reloading.
+[INFO] 2026-05-31 15:30:28,066 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 15:30:41,708 autoreload /app/users/views.py changed, reloading.
+[INFO] 2026-05-31 15:30:42,543 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 15:49:13,106 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:00:05,108 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:03:57,022 autoreload /app/donations/views.py changed, reloading.
+[INFO] 2026-05-31 16:03:57,907 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:04:07,989 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:05:24,568 autoreload /app/core/urls.py changed, reloading.
+[INFO] 2026-05-31 16:05:25,600 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:06:29,583 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:08:16,781 log "GET /users/report/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:08:16,802 log "GET /auth/login/?next=/users/report/ HTTP/1.1" 200 10665
+[INFO] 2026-05-31 16:08:16,846 log "GET /static/css/public.css HTTP/1.1" 200 8817
+[INFO] 2026-05-31 16:08:16,961 log "GET /static/images/favicon.svg HTTP/1.1" 200 460
+[INFO] 2026-05-31 16:09:01,425 log "POST /auth/login/?next=/users/report/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:09:01,475 log "GET /users/report/ HTTP/1.1" 200 13175
+[INFO] 2026-05-31 16:09:01,523 log "GET /static/css/app.css HTTP/1.1" 200 4723
+[INFO] 2026-05-31 16:10:05,977 log "POST /i18n/setlang/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:10:06,005 log "GET /users/report/ HTTP/1.1" 200 13034
+[INFO] 2026-05-31 16:10:06,045 log "GET /static/css/app.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 16:10:14,769 log "POST /i18n/setlang/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:10:14,794 log "GET /users/report/ HTTP/1.1" 200 13175
+[INFO] 2026-05-31 16:10:17,585 log "POST /i18n/setlang/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:10:17,609 log "GET /users/report/ HTTP/1.1" 200 13034
+[INFO] 2026-05-31 16:10:27,316 log "GET /beneficiaries/ HTTP/1.1" 200 12543
+[INFO] 2026-05-31 16:10:31,402 log "GET /beneficiaries/new/ HTTP/1.1" 200 12073
+[INFO] 2026-05-31 16:12:07,739 log "POST /beneficiaries/new/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:12:07,759 log "GET /beneficiaries/ HTTP/1.1" 200 14026
+[INFO] 2026-05-31 16:12:07,794 log "GET /static/css/app.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 16:12:12,885 log "GET /beneficiaries/new/ HTTP/1.1" 200 12073
+[INFO] 2026-05-31 16:14:04,459 log "POST /beneficiaries/new/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:14:04,485 log "GET /beneficiaries/ HTTP/1.1" 200 15166
+[INFO] 2026-05-31 16:14:04,528 log "GET /static/css/app.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 16:14:33,408 log "GET /beneficiaries/report/ HTTP/1.1" 200 14700
+[INFO] 2026-05-31 16:14:53,112 log "GET /dashboard/ HTTP/1.1" 200 16971
+[INFO] 2026-05-31 16:15:14,135 log "GET /audit-log/ HTTP/1.1" 200 16363
+[INFO] 2026-05-31 16:15:14,168 log "GET /static/css/app.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 16:15:27,270 log "GET /donations/intents/review/ HTTP/1.1" 200 10890
+[INFO] 2026-05-31 16:15:39,738 log "GET /memberships/ HTTP/1.1" 200 18596
+[INFO] 2026-05-31 16:16:55,468 log "GET / HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:16:55,502 log "GET /dashboard/ HTTP/1.1" 200 16971
+[INFO] 2026-05-31 16:16:55,531 log "GET /static/css/app.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 16:18:55,475 log "GET / HTTP/1.1" 200 16676
+[INFO] 2026-05-31 16:18:55,513 log "GET /static/css/public.css HTTP/1.1" 200 8817
+[INFO] 2026-05-31 16:18:55,569 log "GET /static/images/logo.png HTTP/1.1" 200 393093
+[INFO] 2026-05-31 16:18:55,591 log "GET /media/activities/image_association_test1.png HTTP/1.1" 200 1995068
+[INFO] 2026-05-31 16:18:55,596 log "GET /media/activities/image_association_test2.png HTTP/1.1" 200 2579108
+[INFO] 2026-05-31 16:18:55,599 log "GET /media/activities/image_association_test3.png HTTP/1.1" 200 2624644
+[INFO] 2026-05-31 16:18:58,262 log "GET /static/images/favicon.svg HTTP/1.1" 200 460
+[INFO] 2026-05-31 16:20:14,536 log "GET /donations/intent/ HTTP/1.1" 200 15935
+[INFO] 2026-05-31 16:20:37,868 log "POST /i18n/setlang/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:20:37,881 log "GET /donations/intent/ HTTP/1.1" 200 15788
+[INFO] 2026-05-31 16:20:37,941 log "GET /static/css/public.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 16:20:44,496 log "POST /i18n/setlang/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 16:20:44,502 log "GET / HTTP/1.1" 200 16375
+[INFO] 2026-05-31 16:23:28,472 log "GET /membership/apply/ HTTP/1.1" 200 19198
+[INFO] 2026-05-31 16:23:28,545 log "GET /static/css/public.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 16:45:06,060 autoreload /app/donations/forms/donation_forms.py changed, reloading.
+[INFO] 2026-05-31 16:45:07,335 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:45:33,025 autoreload /app/users/forms/membership_forms.py changed, reloading.
+[INFO] 2026-05-31 16:45:33,940 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 16:45:44,200 autoreload /app/users/forms/membership_forms.py changed, reloading.
+[INFO] 2026-05-31 16:45:45,256 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 17:32:06,837 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 17:34:43,907 log "GET / HTTP/1.1" 200 16375
+[INFO] 2026-05-31 17:34:43,945 log "GET /static/css/public.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 17:34:44,114 log "GET /static/images/favicon.svg HTTP/1.1" 304 0
+[ERROR] 2026-05-31 17:34:47,691 log Internal Server Error: /donations/intent/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/core/security.py", line 69, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/donations/views.py", line 72, in donation_intent_create
+    return render(request, 'donations/donation_intent_form.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 174, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 135, in render
+    compiled_parent = self.get_parent(context)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 132, in get_parent
+    return self.find_template(parent, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 110, in find_template
+    template, origin = context.template.engine.find_template(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 229, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Template: /app/templates/core/base_public.html, 'block' tag with name 'extra_js' appears more than once
+[ERROR] 2026-05-31 17:34:47,701 log "GET /donations/intent/ HTTP/1.1" 500 195151
+[WARNING] 2026-05-31 17:34:47,769 log "GET /favicon.ico HTTP/1.1" 404 8280
+[ERROR] 2026-05-31 17:35:33,517 log Internal Server Error: /membership/apply/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/core/security.py", line 69, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/users/views.py", line 58, in membership_apply
+    return render(request, 'users/membership_apply.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 174, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 1052, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 135, in render
+    compiled_parent = self.get_parent(context)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 132, in get_parent
+    return self.find_template(parent, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 110, in find_template
+    template, origin = context.template.engine.find_template(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader_tags.py", line 229, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Template: /app/templates/core/base_public.html, 'block' tag with name 'extra_js' appears more than once
+[ERROR] 2026-05-31 17:35:33,524 log "GET /membership/apply/ HTTP/1.1" 500 196376
+[INFO] 2026-05-31 17:37:06,256 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 17:38:48,174 autoreload /app/donations/forms/donation_forms.py changed, reloading.
+[INFO] 2026-05-31 17:38:49,283 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 17:39:22,872 log "GET / HTTP/1.1" 200 16375
+[INFO] 2026-05-31 17:39:24,532 log "GET /donations/intent/ HTTP/1.1" 200 28198
+[INFO] 2026-05-31 17:39:24,560 log "GET /static/js/phone-picker.js HTTP/1.1" 200 3883
+[INFO] 2026-05-31 17:39:24,561 log "GET /static/css/forms.css HTTP/1.1" 200 4474
+[INFO] 2026-05-31 17:40:08,544 autoreload Watching for file changes with StatReloader
+[INFO] 2026-05-31 17:41:30,109 log "POST /donations/intent/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 17:41:30,129 log "GET /donations/intent/thanks/ HTTP/1.1" 200 10033
+[INFO] 2026-05-31 17:51:51,449 log "GET / HTTP/1.1" 200 16375
+[INFO] 2026-05-31 17:51:51,507 log "GET /static/css/public.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 17:52:04,058 log "GET /membership/apply/ HTTP/1.1" 200 48021
+[INFO] 2026-05-31 17:52:04,083 log "GET /static/js/phone-picker.js HTTP/1.1" 304 0
+[INFO] 2026-05-31 17:52:04,084 log "GET /static/css/forms.css HTTP/1.1" 304 0
+[WARNING] 2026-05-31 17:54:17,036 log "GET /memberships/ HTTP/1.1" 403 9116
+[INFO] 2026-05-31 17:54:17,073 log "GET /static/css/public.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 17:54:17,427 log "GET /static/images/favicon.svg HTTP/1.1" 304 0
+[INFO] 2026-05-31 17:54:22,493 log "GET / HTTP/1.1" 200 16375
+[INFO] 2026-05-31 17:54:27,056 log "GET /auth/login/ HTTP/1.1" 200 10495
+[INFO] 2026-05-31 17:54:46,039 log "POST /auth/login/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 17:54:46,086 log "GET /dashboard/ HTTP/1.1" 200 16971
+[INFO] 2026-05-31 17:54:46,119 log "GET /static/css/app.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 18:47:14,486 log "GET /dashboard/ HTTP/1.1" 200 17264
+[INFO] 2026-05-31 18:47:14,526 log "GET /static/css/app.css HTTP/1.1" 304 0
+[INFO] 2026-05-31 18:47:14,622 log "GET /static/images/favicon.svg HTTP/1.1" 304 0
+[INFO] 2026-05-31 18:47:26,850 log "GET /donations/new/ HTTP/1.1" 200 12730
+[INFO] 2026-05-31 18:48:26,218 log "POST /donations/new/ HTTP/1.1" 302 0
+[INFO] 2026-05-31 18:48:26,244 log "GET /donations/ HTTP/1.1" 200 11738
+[INFO] 2026-05-31 18:48:35,059 log "GET / HTTP/1.1" 302 0
+[INFO] 2026-05-31 18:48:35,096 log "GET /dashboard/ HTTP/1.1" 200 17554
+[INFO] 2026-05-31 18:48:37,685 log "GET / HTTP/1.1" 302 0
+[INFO] 2026-05-31 18:48:37,763 log "GET /dashboard/ HTTP/1.1" 200 17554
+[INFO] 2026-05-31 18:48:40,678 log "GET / HTTP/1.1" 302 0
+[INFO] 2026-05-31 18:48:40,754 log "GET /dashboard/ HTTP/1.1" 200 17554
+[INFO] 2026-05-31 18:48:41,715 log "GET / HTTP/1.1" 302 0
+[INFO] 2026-05-31 18:48:41,791 log "GET /dashboard/ HTTP/1.1" 200 17554
+[ERROR] 2026-06-02 01:20:52,318 log Invalid HTTP_HOST header: '172.23.0.1:8000'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '172.23.0.1:8000'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+[WARNING] 2026-06-02 01:20:52,333 log "GET / HTTP/1.1" 400 60861
+[ERROR] 2026-06-02 01:21:05,577 log Invalid HTTP_HOST header: '172.23.0.1:8000'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '172.23.0.1:8000'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+[WARNING] 2026-06-02 01:21:05,579 log "GET / HTTP/1.1" 400 61165
+[ERROR] 2026-06-02 01:21:14,075 log Invalid HTTP_HOST header: '172.23.0.1'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '172.23.0.1'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+[WARNING] 2026-06-02 01:21:14,076 log "GET /loginMsg.js HTTP/1.1" 400 60945
+[ERROR] 2026-06-02 01:21:14,092 log Invalid HTTP_HOST header: '172.23.0.1'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/utils/deprecation.py", line 308, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/http/request.py", line 206, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '172.23.0.1'. You may need to add '172.23.0.1' to ALLOWED_HOSTS.
+[WARNING] 2026-06-02 01:21:14,094 log "GET /cgi/get.cgi?cmd=home_login HTTP/1.1" 400 61367
+[INFO] 2026-06-02 18:28:11,479 autoreload /app/config/settings.py changed, reloading.
+[INFO] 2026-06-02 18:28:13,390 autoreload Watching for file changes with StatReloader
+[INFO] 2026-06-03 12:40:30,633 autoreload /app/config/settings.py changed, reloading.
+[INFO] 2026-06-03 12:40:32,710 autoreload Watching for file changes with StatReloader
+[INFO] 2026-06-03 12:58:02,588 autoreload /app/config/settings.py changed, reloading.
+[INFO] 2026-06-03 12:58:03,671 autoreload Watching for file changes with StatReloader
+[INFO] 2026-06-05 07:46:19,370 autoreload Watching for file changes with StatReloader

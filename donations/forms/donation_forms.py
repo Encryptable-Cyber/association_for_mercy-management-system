@@ -1,6 +1,10 @@
 from django import forms
 from django.core.validators import MinValueValidator
 from ..models import Donation, DonationIntent
+from core.countries import COUNTRY_CHOICES
+
+# Empty choice for optional country fields
+COUNTRY_CHOICES_WITH_EMPTY = [('', '— Select Country —')] + COUNTRY_CHOICES
 
 
 class DonationForm(forms.ModelForm):
@@ -59,8 +63,25 @@ class DonationForm(forms.ModelForm):
 class DonationIntentForm(forms.ModelForm):
     """
     PUBLIC form for donation intent submissions.
-    Enhanced with multi-currency, nationality, and more.
+    Enhanced with country flags, phone code selector, and multi-currency.
     """
+    nationality = forms.ChoiceField(
+        choices=COUNTRY_CHOICES_WITH_EMPTY,
+        required=False,
+        widget=forms.Select(attrs={
+            'class': 'form-select country-select',
+            'data-flag': 'true',
+        })
+    )
+    country_of_residence = forms.ChoiceField(
+        choices=COUNTRY_CHOICES_WITH_EMPTY,
+        required=False,
+        widget=forms.Select(attrs={
+            'class': 'form-select country-select',
+            'data-flag': 'true',
+        })
+    )
+
     class Meta:
         model = DonationIntent
         fields = [
@@ -80,15 +101,8 @@ class DonationIntentForm(forms.ModelForm):
             }),
             'phone': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Your phone number with country code'
-            }),
-            'nationality': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'e.g., Cameroonian, Nigerian, French'
-            }),
-            'country_of_residence': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'e.g., Cameroon, France, USA'
+                'placeholder': 'Phone number (without country code)',
+                'data-phone-field': 'true',
             }),
             'donation_type': forms.Select(attrs={'class': 'form-select'}),
             'currency': forms.Select(attrs={'class': 'form-select'}),

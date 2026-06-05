@@ -1,0 +1,15 @@
+{% extends 'core/base_public.html' %}
+{% load i18n %}
+{% block title %}{% trans "Forbidden (403)" %} - Association for Mercy{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <i class="bi bi-shield-lock" style="font-size: 5rem; color: #dc2626;"></i>
+    <h1 class="fw-bold mt-3" style="font-size: 4rem; color: #1e3a5f;">403</h1>
+    <h4 class="fw-semibold text-muted">{% trans "Access Denied" %}</h4>
+    <p class="text-muted mt-2">{% trans "You don't have permission to access this page." %}</p>
+    <a href="/" class="btn btn-primary mt-3 rounded-pill px-4">
+        <i class="bi bi-house-door me-2"></i>{% trans "Return Home" %}
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+# ═══════════════════════════════════════════════════════════════
+# Docker Compose — Supabase + ngrok (no local DB/Redis needed)
+#
+# Usage:
+#   1. Create a free Supabase project at supabase.com
+#   2. Copy .env.supabase to .env and fill in your credentials
+#   3. docker compose -f docker-compose.supabase.yml up -d
+#   4. ngrok http 8000
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  web:
+    build: .
+    container_name: mercy_web_supabase
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - media_data:/app/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+
+volumes:
+  media_data:

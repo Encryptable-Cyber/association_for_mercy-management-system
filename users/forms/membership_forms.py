@@ -1,12 +1,40 @@
 from django import forms
 from ..models import MembershipApplication
+from core.countries import COUNTRY_CHOICES, AREA_OF_INTEREST_CHOICES
+
+# Empty choice for optional country fields
+COUNTRY_CHOICES_WITH_EMPTY = [('', '— Select Country —')] + COUNTRY_CHOICES
 
 
 class MembershipApplicationForm(forms.ModelForm):
     """
     PUBLIC form for membership applications.
-    Comprehensive profiling with validation.
+    Comprehensive profiling with country flags, phone codes, and multi-select interests.
     """
+    nationality = forms.ChoiceField(
+        choices=COUNTRY_CHOICES_WITH_EMPTY,
+        required=False,
+        widget=forms.Select(attrs={
+            'class': 'form-select country-select',
+            'data-flag': 'true',
+        })
+    )
+    country_of_residence = forms.ChoiceField(
+        choices=COUNTRY_CHOICES_WITH_EMPTY,
+        required=False,
+        widget=forms.Select(attrs={
+            'class': 'form-select country-select',
+            'data-flag': 'true',
+        })
+    )
+    areas_of_interest = forms.MultipleChoiceField(
+        choices=AREA_OF_INTEREST_CHOICES,
+        required=False,
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'form-check-input interest-checkbox',
+        })
+    )
+
     class Meta:
         model = MembershipApplication
         fields = [
@@ -33,21 +61,14 @@ class MembershipApplicationForm(forms.ModelForm):
             }),
             'phone': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Phone number with country code'
+                'placeholder': 'Phone number (without country code)',
+                'data-phone-field': 'true',
             }),
             'date_of_birth': forms.DateInput(attrs={
                 'type': 'date',
                 'class': 'form-control'
             }),
             'gender': forms.Select(attrs={'class': 'form-select'}),
-            'nationality': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'e.g., Cameroonian, Nigerian, French'
-            }),
-            'country_of_residence': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'e.g., Cameroon, France, USA'
-            }),
             'city': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'e.g., Yaoundé, Douala'
@@ -87,10 +108,6 @@ class MembershipApplicationForm(forms.ModelForm):
                 'rows': 3,
                 'placeholder': 'Describe any previous volunteering or community service'
             }),
-            'areas_of_interest': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'e.g., Health, Education, Emergency Relief, Youth Empowerment'
-            }),
             'availability': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'e.g., 5 hours/week, weekends, evenings'
@@ -100,6 +117,19 @@ class MembershipApplicationForm(forms.ModelForm):
                 'placeholder': 'e.g., Social media, Friend, Event, Website'
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Populate existing areas_of_interest as a list for the checkboxes
+        if self.instance and self.instance.pk and self.instance.areas_of_interest:
+            self.initial['areas_of_interest'] = [
+                v.strip() for v in self.instance.areas_of_interest.split(',') if v.strip()
+            ]
+
+    def clean_areas_of_interest(self):
+        """Join multiple selected areas into a comma-separated string."""
+        interests = self.cleaned_data.get('areas_of_interest', [])
+        return ', '.join(interests) if interests else ''
 
     def clean_email(self):
         """Normalize email to lowercase."""

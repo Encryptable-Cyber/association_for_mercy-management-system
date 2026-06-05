@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from datetime import datetime
 from core.permissions import staff_required
+from core.utils import get_client_ip
 try:
     from core.reports import generate_pdf_report, generate_excel_report, log_export
 except ImportError:
@@ -200,8 +201,7 @@ def beneficiary_report(request):
                 b.created_at.strftime('%Y-%m-%d')
             ])
 
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        ip = x_forwarded_for.split(',')[0].strip() if x_forwarded_for else request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(request)
         log_export(request.user, 'beneficiaries', export_type, filters, ip)
 
         if export_type == 'pdf':

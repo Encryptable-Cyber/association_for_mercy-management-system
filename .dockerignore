@@ -1,6 +1,7 @@
 # Git
 .git/
 .gitignore
+.gitattributes
 
 # Python
 __pycache__/
@@ -9,6 +10,7 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+*.egg
 
 # Virtual Environment
 venv/
@@ -18,6 +20,8 @@ venv/
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # Database
 *.sqlite3
@@ -27,6 +31,29 @@ media/
 
 # Sent emails
 sent_emails/
+
+# Environment
+.env
+
+# Docker volumes
+postgres_data/
+redis_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Static (collected by collectstatic)
+staticfiles/
+
+# Logs
+logs/
+*.log
 
 # Documentation
 README.md

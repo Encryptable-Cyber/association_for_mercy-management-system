@@ -24,8 +24,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # ─── Copy Application Code ────────────────────────────────────
 COPY . .
 
-# ─── Create Directories for Media & Static ────────────────────
-RUN mkdir -p /app/media /app/staticfiles /app/sent_emails
+# ─── Entrypoint Script ────────────────────────────────────────
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# ─── Create Directories for Media, Static & Logs ──────────────
+RUN mkdir -p /app/media /app/staticfiles /app/sent_emails /app/logs
 
 # ─── Change Ownership to Non-Root User ────────────────────────
 RUN chown -R mercy:mercy /app
@@ -35,5 +39,6 @@ USER mercy
 EXPOSE 8000
 
 # ─── Run Application ──────────────────────────────────────────
-# ─── Default Command (overridden by docker-compose) ────────────
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["/entrypoint.sh"]
+# Production: Gunicorn with Railway's PORT env var (default 8000)
+CMD sh -c "gunicorn --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 120 config.wsgi:application"

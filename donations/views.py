@@ -5,6 +5,7 @@ from django.db.models import Sum
 from django.utils import timezone
 from datetime import datetime
 from core.permissions import staff_required, admin_required
+from core.utils import get_client_ip
 try:
     from core.reports import generate_pdf_report, generate_excel_report, log_export
 except ImportError:
@@ -58,11 +59,7 @@ def donation_intent_create(request):
         form = DonationIntentForm(request.POST)
         if form.is_valid():
             donation_intent = form.save(commit=False)
-            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-            if x_forwarded_for:
-                donation_intent.ip_address = x_forwarded_for.split(',')[0].strip()
-            else:
-                donation_intent.ip_address = request.META.get('REMOTE_ADDR')
+            donation_intent.ip_address = get_client_ip(request)
             donation_intent.save()
             messages.success(
                 request,
@@ -149,8 +146,7 @@ def donation_report(request):
         export_type = request.POST.get('export_type')
         headers = ['Receipt #', 'Donor', 'Amount', 'Currency', 'Method', 'Date', 'Program']
         data = [[d.receipt_number, d.donor_name, str(d.amount), d.currency, d.get_payment_method_display(), d.donation_date.strftime('%Y-%m-%d'), d.program.name if d.program else '—'] for d in donations]
-        xff = request.META.get('HTTP_X_FORWARDED_FOR')
-        ip = xff.split(',')[0].strip() if xff else request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(request)
         log_export(request.user, 'donations', export_type, {'q': query, 'method': method_filter, 'year': year_filter, 'month': month_filter, 'program': program_filter}, ip)
         if export_type == 'pdf':
             return generate_pdf_report('Donation Report', headers, data, f'donations_{datetime.now().strftime("%Y%m%d_%H%M")}.pdf')

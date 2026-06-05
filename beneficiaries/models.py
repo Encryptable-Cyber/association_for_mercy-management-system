@@ -44,6 +44,7 @@ class Beneficiary(models.Model):
         indexes = [
             models.Index(fields=['last_name', 'first_name']),
             models.Index(fields=['status']),
+            models.Index(fields=['email']),
         ]
 
     def __str__(self):

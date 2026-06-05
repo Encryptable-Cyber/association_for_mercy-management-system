@@ -202,6 +202,11 @@ class MembershipApplication(models.Model):
         ordering = ['-submitted_at']
         verbose_name = 'Membership Application'
         verbose_name_plural = 'Membership Applications'
+        indexes = [
+            models.Index(fields=['status']),
+            models.Index(fields=['email']),
+            models.Index(fields=['submitted_at']),
+        ]
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.get_status_display()}"

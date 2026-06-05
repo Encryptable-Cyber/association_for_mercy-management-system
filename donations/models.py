@@ -45,6 +45,8 @@ class Donation(models.Model):
         indexes = [
             models.Index(fields=['donation_date']),
             models.Index(fields=['payment_method']),
+            models.Index(fields=['donor_email']),
+            models.Index(fields=['program']),
         ]
 
     def __str__(self):
@@ -167,6 +169,11 @@ class DonationIntent(models.Model):
         ordering = ['-submitted_at']
         verbose_name = 'Donation Intent'
         verbose_name_plural = 'Donation Intents'
+        indexes = [
+            models.Index(fields=['status']),
+            models.Index(fields=['email']),
+            models.Index(fields=['submitted_at']),
+        ]
 
     def __str__(self):
         return f"{self.full_name} - {self.get_donation_type_display()}"

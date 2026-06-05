@@ -1,0 +1,15 @@
+"""
+Utility functions used across the application.
+"""
+from django.core.cache import cache
+
+
+def get_client_ip(request):
+    """
+    Extract the client IP address from the request,
+    accounting for reverse proxies via X-Forwarded-For.
+    """
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        return x_forwarded_for.split(',')[0].strip()
+    return request.META.get('REMOTE_ADDR', '')

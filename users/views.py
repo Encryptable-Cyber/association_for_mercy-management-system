@@ -15,6 +15,7 @@ import uuid
 from datetime import datetime
 from core.permissions import admin_required
 from core.security import rate_limit
+from core.utils import get_client_ip
 from .models import MembershipApplication, User, OTP, AuditLog, log_audit
 from .forms.membership_forms import MembershipApplicationForm, MembershipDocumentForm
 
@@ -35,11 +36,7 @@ def membership_apply(request):
         form = MembershipApplicationForm(request.POST)
         if form.is_valid():
             application = form.save(commit=False)
-            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-            if x_forwarded_for:
-                application.ip_address = x_forwarded_for.split(',')[0].strip()
-            else:
-                application.ip_address = request.META.get('REMOTE_ADDR')
+            application.ip_address = get_client_ip(request)
             application.save()
 
             # Audit log
@@ -118,7 +115,7 @@ def membership_review(request, pk):
                 user=request.user,
                 action=f'application_{new_status}',
                 description=f'Application #{application.id} ({application.full_name}) marked as {new_status}. Notes: {admin_notes}',
-                ip_address=request.META.get('REMOTE_ADDR')
+                ip_address=get_client_ip(request)
             )
 
             if new_status == 'approved':
@@ -220,7 +217,7 @@ def membership_signup(request, token):
                 user=user,
                 action='account_created',
                 description=f'Account created via invitation for {user.email}',
-                ip_address=request.META.get('REMOTE_ADDR')
+                ip_address=get_client_ip(request)
             )
 
             raw_otp = OTP.generate_otp(user, 'account_activation')
@@ -315,7 +312,7 @@ def user_toggle_active(request, pk):
         action='account_deactivated' if not target_user.is_active else 'account_reactivated',
         description=f'User {target_user.email} {action}',
         target_user=target_user,
-        ip_address=request.META.get('REMOTE_ADDR')
+        ip_address=get_client_ip(request)
     )
 
     messages.success(request, f'User {target_user.email} has been {action}.')
@@ -355,7 +352,7 @@ def user_change_role(request, pk):
         action='role_changed',
         description=f'{target_user.email} changed from {old_role} to {target_user.get_role_display()}',
         target_user=target_user,
-        ip_address=request.META.get('REMOTE_ADDR')
+        ip_address=get_client_ip(request)
     )
 
     messages.success(request, f'{target_user.email} changed from {old_role} to {target_user.get_role_display()}.')
@@ -383,7 +380,7 @@ def user_reset_password(request, pk):
         action='password_reset_requested',
         description=f'Password reset requested for {target_user.email}',
         target_user=target_user,
-        ip_address=request.META.get('REMOTE_ADDR')
+        ip_address=get_client_ip(request)
     )
 
     messages.success(request, f'Password reset link generated.')
@@ -415,8 +412,7 @@ def membership_report(request):
         export_type = request.POST.get('export_type')
         headers = ['Name', 'Email', 'Phone', 'Nationality', 'Occupation', 'Status', 'Submitted']
         data = [[a.full_name, a.email, a.phone, a.nationality or '—', a.occupation or '—', a.get_status_display(), a.submitted_at.strftime('%Y-%m-%d')] for a in apps]
-        xff = request.META.get('HTTP_X_FORWARDED_FOR')
-        ip = xff.split(',')[0].strip() if xff else request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(request)
         if log_export:
             log_export(request.user, 'membership_applications', export_type, {'q': query}, ip)
         if export_type == 'pdf':
@@ -461,8 +457,7 @@ def user_report(request):
         export_type = request.POST.get('export_type')
         headers = ['Name', 'Email', 'Role', 'Status', 'Joined']
         data = [[u.get_full_name(), u.email, u.get_role_display(), 'Active' if u.is_active else 'Disabled', u.date_joined.strftime('%Y-%m-%d')] for u in users]
-        xff = request.META.get('HTTP_X_FORWARDED_FOR')
-        ip = xff.split(',')[0].strip() if xff else request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(request)
         if log_export:
             log_export(request.user, 'users', export_type, {'q': query}, ip)
         if export_type == 'pdf':
@@ -496,7 +491,7 @@ def membership_upload_document(request, pk):
                 user=None,
                 action='document_uploaded',
                 description=f'Document "{document.document_type}" uploaded for application #{application.id} ({application.full_name})',
-                ip_address=request.META.get('REMOTE_ADDR')
+                ip_address=get_client_ip(request)
             )
 
             messages.success(request, 'Document uploaded successfully!')
@@ -537,7 +532,7 @@ def otp_verify(request):
                     user=user,
                     action='otp_verified',
                     description=f'OTP verified for {purpose}',
-                    ip_address=request.META.get('REMOTE_ADDR')
+                    ip_address=get_client_ip(request)
                 )
 
                 if purpose == 'account_activation':
@@ -560,7 +555,7 @@ def otp_verify(request):
                     user=user,
                     action='otp_failed',
                     description=f'Failed OTP attempt for {purpose}',
-                    ip_address=request.META.get('REMOTE_ADDR')
+                    ip_address=get_client_ip(request)
                 )
                 messages.error(request, 'Invalid or expired OTP. Please try again.')
 
@@ -589,7 +584,7 @@ class OTPPasswordResetConfirmView(PasswordResetConfirmView):
                     user=user,
                     action='password_reset_completed',
                     description=f'Password reset completed for {user.email}',
-                    ip_address=self.request.META.get('REMOTE_ADDR')
+                    ip_address=get_client_ip(self.request)
                 )
 
                 messages.success(self.request, 'Password changed successfully! You can now log in.')

@@ -44,6 +44,7 @@ import time
 from functools import wraps
 from django.core.cache import cache
 from django.http import HttpResponse
+from .utils import get_client_ip
 
 
 def rate_limit(max_requests=10, window=60):
@@ -54,13 +55,7 @@ def rate_limit(max_requests=10, window=60):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
-            # Get client IP
-            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-            if x_forwarded_for:
-                ip = x_forwarded_for.split(',')[0].strip()
-            else:
-                ip = request.META.get('REMOTE_ADDR')
-
+            ip = get_client_ip(request)
             cache_key = f'rate_limit_{ip}_{view_func.__name__}'
             requests_count = cache.get(cache_key, 0)
 

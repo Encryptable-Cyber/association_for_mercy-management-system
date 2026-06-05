@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from core.permissions import staff_required
+from core.utils import get_client_ip
 from .models import Program
 from datetime import datetime
 from .forms.program_forms import ProgramForm
@@ -102,8 +103,7 @@ def program_report(request):
         export_type = request.POST.get('export_type')
         headers = ['Name', 'Status', 'Start Date', 'End Date', 'Budget (XAF)', 'Created']
         data = [[p.name, p.get_status_display(), p.start_date.strftime('%Y-%m-%d'), p.end_date.strftime('%Y-%m-%d') if p.end_date else '—', str(p.budget), p.created_at.strftime('%Y-%m-%d')] for p in programs]
-        xff = request.META.get('HTTP_X_FORWARDED_FOR')
-        ip = xff.split(',')[0].strip() if xff else request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(request)
         log_export(request.user, 'programs', export_type, {'q': query, 'status': status_filter, 'year': year_filter, 'month': month_filter}, ip)
         if export_type == 'pdf':
             return generate_pdf_report('Program Report', headers, data, f'programs_{datetime.now().strftime("%Y%m%d_%H%M")}.pdf')

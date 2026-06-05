@@ -4,149 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Association for Mercy — Empowering vulnerable communities through compassionate action, sustainable programs, and transparent giving in Cameroon and beyond.{% endblock %}">
+    <meta name="keywords" content="NGO, charity, Cameroon, humanitarian, donation, volunteering, mercy, community, Douala">
+    <meta name="author" content="Association for Mercy">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Association for Mercy">
+    <meta property="og:title" content="{% block og_title %}Association for Mercy — Compassion in Action{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Empowering vulnerable communities through compassionate action, sustainable programs, and transparent giving.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% static 'images/logo.png' %}{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:locale" content="{% if LANGUAGE_CODE == 'fr' %}fr_FR{% else %}en_US{% endif %}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Association for Mercy — Compassion in Action{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Empowering vulnerable communities through compassionate action.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/logo.png' %}{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="alternate icon" type="image/png" href="{% static 'images/logo.png' %}">
+
     <title>{% block title %}Association for Mercy{% endblock %}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        * { font-family: 'Inter', sans-serif; }
-
-        body {
-            background: #f8fafc;
-            color: #1e293b;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ── Navbar ──────────────────────── */
-        .navbar-main {
-            background: #fffbf5;
-            border-bottom: 2px solid #fde68a;
-            padding: 0.6rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar-main .brand {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #1e3a5f;
-            text-decoration: none;
-        }
-        .navbar-main .brand img {
-            height: 48px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* ── Hidden Staff Login ─────────── */
-        .logo-area {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-        .staff-login-btn {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .logo-area:hover .staff-login-btn {
-            opacity: 1;
-            visibility: visible;
-        }
-        .btn-soft-primary {
-            background: #fff0f0;
-            color: #b91c1c;
-            border: 1px solid #fecaca;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        .btn-soft-primary:hover {
-            background: #fecaca;
-            color: #991b1b;
-        }
-
-        /* ── Language Switcher ──────────── */
-        .lang-select {
-            font-size: 0.8rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 0.25rem 0.5rem;
-            background: white;
-            cursor: pointer;
-        }
-
-        /* ── Required Field Indicator ───── */
-        .required-field::after {
-            content: " *";
-            color: #dc2626;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* ── Cards ──────────────────────── */
-        .table-card {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-        }
-
-        /* ── Main Content ───────────────── */
-        .main-content {
-            flex: 1;
-            padding: 2rem 0;
-        }
-
-        /* ── Footer ──────────────────────── */
-        .footer-main {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 2.5rem 0 1.5rem;
-            font-size: 0.9rem;
-            margin-top: auto;
-        }
-        .footer-main h5 {
-            color: white;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
-        }
-        .footer-main a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-        .footer-main a:hover { color: white; }
-        .footer-bottom {
-            background: #0a0f1a;
-            color: #64748b;
-            padding: 0.8rem 0;
-            font-size: 0.8rem;
-            text-align: center;
-        }
-        .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            color: white;
-            margin-right: 0.5rem;
-            transition: all 0.2s;
-        }
-        .footer-social a:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
-    </style>
+    <link href="{% static 'css/public.css' %}" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
 
@@ -172,12 +60,11 @@
                 </form>
 
                 <!-- Logo -->
-                <a href="/" class="brand d-flex align-items-center text-decoration-none">
+                <a href="/" class="brand d-flex align-items-center text-decoration-none" title="{% trans 'Return to Home' %}">
                     <img src="{% static 'images/logo.png' %}" alt="Association for Mercy Logo" class="me-3">
                     <div class="d-none d-md-block">
                         <div style="font-weight: 800; font-size: 1.2rem; color: #1e3a5f;">
                             {% trans "Association for Mercy" %}
-                            <i class="bi bi-lock-fill ms-2" style="font-size: 0.6rem; color: #cbd5e1; opacity: 0.5;" title="Staff area"></i>
                         </div>
                         <div style="font-size: 0.65rem; color: #64748b; letter-spacing: 1px; text-transform: uppercase;">{% trans "Compassion · Assistance · Integrity" %}</div>
                     </div>
@@ -260,7 +147,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    {% block extra_js %}{% endblock %}
     <script>
         
     // Show staff login on logo hover
@@ -273,6 +159,8 @@
         if (btn) { btn.style.opacity = '0'; btn.style.visibility = 'hidden'; }
     });
     </script>
+
+    {% block extra_js %}{% endblock %}
 
 </body>
 </html>
