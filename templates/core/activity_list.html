@@ -1,0 +1,58 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Activities" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">{% trans "Manage Activities" %}</h2>
+        <a href="{% url 'core:activity_create' %}" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i>{% trans "Add Activity" %}
+        </a>
+    </div>
+
+    {% if activities %}
+    <div class="row g-4">
+        {% for activity in activities %}
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 {% if not activity.is_active %}opacity-50{% endif %}">
+                {% if activity.image %}
+                <img src="{{ activity.image.url }}" class="card-img-top" style="height:180px;object-fit:cover;">
+                {% else %}
+                <div class="bg-light d-flex align-items-center justify-content-center" style="height:180px;">
+                    <i class="bi bi-image text-muted" style="font-size:3rem;"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h6 class="fw-bold">{{ activity.title }}</h6>
+                    {% if activity.date %}<small class="text-muted">{{ activity.date|date:"M d, Y" }}</small>{% endif %}
+                    <p class="small mt-2 mb-0">{{ activity.description|truncatechars:80 }}</p>
+                    <div class="mt-2 d-flex gap-2">
+                        <span class="badge bg-{% if activity.is_active %}success{% else %}secondary{% endif %}">
+                            {% if activity.is_active %}{% trans "Active" %}{% else %}{% trans "Hidden" %}{% endif %}
+                        </span>
+                        <span class="badge bg-info">{% trans "Order" %}: {{ activity.order }}</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent d-flex gap-2">
+                    <a href="{% url 'core:activity_edit' activity.pk %}" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-pencil"></i> {% trans "Edit" %}
+                    </a>
+                    <a href="{% url 'core:activity_toggle' activity.pk %}" class="btn btn-sm btn-outline-warning">
+                        <i class="bi bi-eye{% if activity.is_active %}-slash{% endif %}"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="bi bi-images text-muted" style="font-size:4rem;"></i>
+        <h5 class="mt-3">{% trans "No activities yet" %}</h5>
+        <a href="{% url 'core:activity_create' %}" class="btn btn-primary mt-2">{% trans "Add First Activity" %}</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -117,6 +117,10 @@
                 <i class="bi bi-file-earmark-bar-graph"></i>{% trans "Reports" %}
             </a>
 
+            <a href="{% url 'core:activity_list' %}" class="nav-link">
+                <i class="bi bi-images"></i>{% trans "Activities" %}
+            </a>
+
             {% if user.is_super_admin %}
             <div class="sidebar-heading">{% trans "System" %}</div>
             <a href="{% url 'users:user_management' %}" class="nav-link">

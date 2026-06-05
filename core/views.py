@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
 from django.core.cache import cache
 from core.permissions import staff_required
@@ -62,3 +62,57 @@ def dashboard(request):
                          .order_by('-created_at')[:5],
     }
     return render(request, 'core/dashboard.html', context)
+
+
+@staff_required
+def activity_list(request):
+    """List all activities for management."""
+    activities = Activity.objects.all().order_by('order', '-date')
+    return render(request, 'core/activity_list.html', {'activities': activities})
+
+
+@staff_required
+def activity_create(request):
+    """Create a new activity."""
+    if request.method == 'POST':
+        activity = Activity(
+            title=request.POST.get('title', ''),
+            description=request.POST.get('description', ''),
+            date=request.POST.get('date') or None,
+            order=int(request.POST.get('order', 0)),
+            is_active=request.POST.get('is_active') == 'on',
+            created_by=request.user,
+        )
+        if 'image' in request.FILES:
+            activity.image = request.FILES['image']
+        activity.save()
+        return redirect('core:activity_list')
+    return render(request, 'core/activity_form.html', {'action': 'Create'})
+
+
+@staff_required
+def activity_edit(request, pk):
+    """Edit an existing activity."""
+    activity = get_object_or_404(Activity, pk=pk)
+    if request.method == 'POST':
+        activity.title = request.POST.get('title', '')
+        activity.description = request.POST.get('description', '')
+        activity.date = request.POST.get('date') or None
+        activity.order = int(request.POST.get('order', 0))
+        activity.is_active = request.POST.get('is_active') == 'on'
+        if 'image' in request.FILES:
+            activity.image = request.FILES['image']
+        activity.save()
+        return redirect('core:activity_list')
+    return render(request, 'core/activity_form.html', {
+        'activity': activity, 'action': 'Edit'
+    })
+
+
+@staff_required
+def activity_toggle(request, pk):
+    """Toggle activity active/inactive."""
+    activity = get_object_or_404(Activity, pk=pk)
+    activity.is_active = not activity.is_active
+    activity.save()
+    return redirect('core:activity_list')
