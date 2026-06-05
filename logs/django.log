@@ -335,3 +335,5 @@ django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '172.23.0.1'. Y
 [INFO] 2026-06-05 09:19:09,210 autoreload Watching for file changes with StatReloader
 [INFO] 2026-06-05 09:20:16,300 autoreload /app/config/settings.py changed, reloading.
 [INFO] 2026-06-05 09:20:17,573 autoreload Watching for file changes with StatReloader
+[INFO] 2026-06-05 09:20:35,256 autoreload /app/config/settings.py changed, reloading.
+[INFO] 2026-06-05 09:20:36,163 autoreload Watching for file changes with StatReloader

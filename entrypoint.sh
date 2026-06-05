@@ -11,6 +11,9 @@ python manage.py migrate --noinput
 echo "==> Collecting static files..."
 python manage.py collectstatic --noinput
 
+echo "==> Ensuring super_admin exists..."
+python manage.py promote_admin
+
 echo "==> Creating log directory..."
 mkdir -p /app/logs
 
